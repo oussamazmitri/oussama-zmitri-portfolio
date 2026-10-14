@@ -1,0 +1,455 @@
+/* ==========================================================================
+   PORTFOLIO DESIGN SYSTEM TOKENS
+   Supports:
+   - Templates: Normal, Dev Mode, Matrix
+   - Themes: Light, Dark
+   ========================================================================== */
+
+:root {
+  /* Common typography tokens */
+  --font-primary: 'Sora', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-handwriting: 'Caveat', cursive, sans-serif;
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+}
+
+/* ==========================================================================
+   1. NORMAL TEMPLATE - LIGHT MODE (Default Baseline)
+   ========================================================================== */
+[data-template="normal"][data-theme="light"],
+[data-template="normal"]:not([data-theme="dark"]) {
+  --bg-main: #F6F1C0;
+  --bg-alt: #FFFFFF;
+  --bg-nav: rgba(255, 255, 255, 0.92);
+  --bg-card: #FFFFFF;
+  --bg-popover: #FFFFFF;
+  
+  --text-heading: #35332D;
+  --text-body: #35332D;
+  --text-secondary: #625D4D;
+  --text-muted: #625D4D;
+  --text-link: #625D4D;
+  --link-hover: #35332D;
+
+  --accent-primary: #FFEA95;
+  --accent-muted: #938C70;
+
+  --btn-primary-bg: #35332D;
+  --btn-primary-text: #FFEA95;
+  --btn-primary-hover: #4B473D;
+
+  --btn-secondary-bg: #FFFFFF;
+  --btn-secondary-text: #35332D;
+  --btn-secondary-border: #938C70;
+
+  --nav-active: #35332D;
+  --focus-outline: #625D4D;
+  --border-card: #D8D4C5;
+  --border-subtle: #E8E4D5;
+  --divider: #D8D4C5;
+  --shadow: 0 8px 24px rgba(53, 51, 45, 0.08);
+  --shadow-hover: 0 14px 32px rgba(53, 51, 45, 0.14);
+
+  --input-bg: #FFFFFF;
+  --input-text: #35332D;
+  --input-placeholder: #625D4D;
+
+  --tag-bg: #F6F1C0;
+  --tag-text: #35332D;
+  --skill-indicator: #938C70;
+
+  --timeline-line: #938C70;
+  --timeline-dot: #35332D;
+
+  --social-icon: #625D4D;
+  --social-hover: #35332D;
+
+  --badge-bg: #F6F1C0;
+  --badge-text: #35332D;
+
+  --tooltip-bg: #35332D;
+  --tooltip-text: #FFFFFF;
+
+  --disabled-bg: #E4E0D0;
+  --disabled-text: #625D4D;
+
+  /* Annotation Marker */
+  --annotation-blue: #1D4ED8;
+  --annotation-text: #1E40AF;
+  --annotation-bg: rgba(239, 246, 255, 0.85);
+
+  --current-font: var(--font-primary);
+}
+
+/* ==========================================================================
+   2. NORMAL TEMPLATE - DARK MODE
+   ========================================================================== */
+[data-template="normal"][data-theme="dark"] {
+  --bg-main: #25241F;
+  --bg-alt: #2D2B25;
+  --bg-nav: rgba(53, 51, 45, 0.92);
+  --bg-card: #35332D;
+  --bg-popover: #35332D;
+
+  --text-heading: #FFFFFF;
+  --text-body: #F6F1C0;
+  --text-secondary: #D5D0B7;
+  --text-muted: #C9C3A8;
+  --text-link: #FFEA95;
+  --link-hover: #F6F1C0;
+
+  --accent-primary: #FFEA95;
+  --accent-muted: #938C70;
+
+  --btn-primary-bg: #FFEA95;
+  --btn-primary-text: #35332D;
+  --btn-primary-hover: #F6F1C0;
+
+  --btn-secondary-bg: #35332D;
+  --btn-secondary-text: #F6F1C0;
+  --btn-secondary-border: #938C70;
+
+  --nav-active: #FFEA95;
+  --focus-outline: #FFEA95;
+  --border-card: #625D4D;
+  --border-subtle: #4D493E;
+  --divider: #625D4D;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 14px 32px rgba(0, 0, 0, 0.5);
+
+  --input-bg: #25241F;
+  --input-text: #FFFFFF;
+  --input-placeholder: #C9C3A8;
+
+  --tag-bg: #454238;
+  --tag-text: #F6F1C0;
+  --skill-indicator: #FFEA95;
+
+  --timeline-line: #938C70;
+  --timeline-dot: #FFEA95;
+
+  --social-icon: #F6F1C0;
+  --social-hover: #FFEA95;
+
+  --badge-bg: #454238;
+  --badge-text: #F6F1C0;
+
+  --tooltip-bg: #F6F1C0;
+  --tooltip-text: #35332D;
+
+  --disabled-bg: #454238;
+  --disabled-text: #C9C3A8;
+
+  /* Annotation Marker */
+  --annotation-blue: #60A5FA;
+  --annotation-text: #93C5FD;
+  --annotation-bg: rgba(30, 58, 138, 0.4);
+
+  --current-font: var(--font-primary);
+}
+
+/* ==========================================================================
+   3. DEV MODE TEMPLATE - DARK MODE (Python IDE Dark)
+   ========================================================================== */
+[data-template="devmode"][data-theme="dark"],
+[data-template="devmode"]:not([data-theme="light"]) {
+  --bg-main: #18181b;
+  --bg-alt: #1f1f23;
+  --bg-nav: #141416;
+  --bg-card: #1f1f23;
+  --bg-popover: #27272a;
+
+  --ide-sidebar: #121214;
+  --ide-tab-bar: #141416;
+  --ide-tab-active: #1f1f23;
+  --ide-tab-inactive: #121214;
+  --ide-gutter: #161618;
+  --ide-gutter-text: #52525b;
+  --ide-statusbar: #09090b;
+
+  --syntax-keyword: #f43f5e;
+  --syntax-def: #60a5fa;
+  --syntax-string: #34d399;
+  --syntax-comment: #71717a;
+  --syntax-class: #fbbf24;
+  --syntax-number: #c084fc;
+  --syntax-var: #e4e4e7;
+
+  --text-heading: #fafafa;
+  --text-body: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-link: #38bdf8;
+  --link-hover: #7dd3fc;
+
+  --accent-primary: #38bdf8;
+  --accent-muted: #3f3f46;
+
+  --btn-primary-bg: #0284c7;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #0369a1;
+
+  --btn-secondary-bg: #27272a;
+  --btn-secondary-text: #e4e4e7;
+  --btn-secondary-border: #3f3f46;
+
+  --nav-active: #38bdf8;
+  --focus-outline: #38bdf8;
+  --border-card: #27272a;
+  --border-subtle: #202024;
+  --divider: #27272a;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.6);
+
+  --input-bg: #141416;
+  --input-text: #fafafa;
+  --input-placeholder: #71717a;
+
+  --tag-bg: #27272a;
+  --tag-text: #38bdf8;
+  --skill-indicator: #38bdf8;
+
+  --timeline-line: #3f3f46;
+  --timeline-dot: #38bdf8;
+
+  --social-icon: #a1a1aa;
+  --social-hover: #38bdf8;
+
+  --badge-bg: #141416;
+  --badge-text: #38bdf8;
+
+  --tooltip-bg: #27272a;
+  --tooltip-text: #fafafa;
+
+  --disabled-bg: #27272a;
+  --disabled-text: #52525b;
+
+  --annotation-blue: #38bdf8;
+  --annotation-text: #7dd3fc;
+  --annotation-bg: rgba(14, 165, 233, 0.15);
+
+  --current-font: var(--font-mono);
+}
+
+/* ==========================================================================
+   4. DEV MODE TEMPLATE - LIGHT MODE (Python IDE Light)
+   ========================================================================== */
+[data-template="devmode"][data-theme="light"] {
+  --bg-main: #f8fafc;
+  --bg-alt: #f1f5f9;
+  --bg-nav: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-popover: #ffffff;
+
+  --ide-sidebar: #f1f5f9;
+  --ide-tab-bar: #e2e8f0;
+  --ide-tab-active: #ffffff;
+  --ide-tab-inactive: #e2e8f0;
+  --ide-gutter: #f8fafc;
+  --ide-gutter-text: #94a3b8;
+  --ide-statusbar: #0284c7;
+
+  --syntax-keyword: #d946ef;
+  --syntax-def: #0284c7;
+  --syntax-string: #15803d;
+  --syntax-comment: #64748b;
+  --syntax-class: #b45309;
+  --syntax-number: #7c3aed;
+  --syntax-var: #0f172a;
+
+  --text-heading: #0f172a;
+  --text-body: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-link: #0284c7;
+  --link-hover: #0369a1;
+
+  --accent-primary: #0284c7;
+  --accent-muted: #cbd5e1;
+
+  --btn-primary-bg: #0284c7;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #0369a1;
+
+  --btn-secondary-bg: #ffffff;
+  --btn-secondary-text: #0f172a;
+  --btn-secondary-border: #cbd5e1;
+
+  --nav-active: #0284c7;
+  --focus-outline: #0284c7;
+  --border-card: #e2e8f0;
+  --border-subtle: #cbd5e1;
+  --divider: #e2e8f0;
+  --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.1);
+
+  --input-bg: #ffffff;
+  --input-text: #0f172a;
+  --input-placeholder: #94a3b8;
+
+  --tag-bg: #f1f5f9;
+  --tag-text: #0284c7;
+  --skill-indicator: #0284c7;
+
+  --timeline-line: #cbd5e1;
+  --timeline-dot: #0284c7;
+
+  --social-icon: #475569;
+  --social-hover: #0284c7;
+
+  --badge-bg: #e2e8f0;
+  --badge-text: #0f172a;
+
+  --tooltip-bg: #0f172a;
+  --tooltip-text: #ffffff;
+
+  --disabled-bg: #e2e8f0;
+  --disabled-text: #94a3b8;
+
+  --annotation-blue: #0284c7;
+  --annotation-text: #0369a1;
+  --annotation-bg: rgba(2, 132, 199, 0.12);
+
+  --current-font: var(--font-mono);
+}
+
+/* ==========================================================================
+   5. MATRIX TEMPLATE - DARK MODE (Cyberpunk Green / Terminal)
+   ========================================================================== */
+[data-template="matrix"][data-theme="dark"],
+[data-template="matrix"]:not([data-theme="light"]) {
+  --bg-main: #050805;
+  --bg-alt: #081409;
+  --bg-nav: rgba(11, 31, 14, 0.92);
+  --bg-card: #0B1F0E;
+  --bg-popover: #0B1F0E;
+
+  --text-heading: #00FF41;
+  --text-body: #B6FFB9;
+  --text-secondary: #7AD980;
+  --text-muted: #4B9651;
+  --text-link: #00FF41;
+  --link-hover: #FFFFFF;
+
+  --accent-primary: #00FF41;
+  --accent-muted: #17351D;
+
+  --btn-primary-bg: #00FF41;
+  --btn-primary-text: #050805;
+  --btn-primary-hover: #7EFF9E;
+
+  --btn-secondary-bg: #0B1F0E;
+  --btn-secondary-text: #00FF41;
+  --btn-secondary-border: #00FF41;
+
+  --nav-active: #00FF41;
+  --focus-outline: #00FF41;
+  --border-card: #17351D;
+  --border-subtle: #0F2A14;
+  --divider: #17351D;
+  --shadow: 0 0 20px rgba(0, 255, 65, 0.12);
+  --shadow-hover: 0 0 28px rgba(0, 255, 65, 0.25);
+
+  --input-bg: #081409;
+  --input-text: #00FF41;
+  --input-placeholder: #4B9651;
+
+  --tag-bg: #081409;
+  --tag-text: #00FF41;
+  --skill-indicator: #00FF41;
+
+  --timeline-line: #17351D;
+  --timeline-dot: #00FF41;
+
+  --social-icon: #7AD980;
+  --social-hover: #00FF41;
+
+  --badge-bg: #081409;
+  --badge-text: #00FF41;
+
+  --tooltip-bg: #00FF41;
+  --tooltip-text: #050805;
+
+  --disabled-bg: #0B1F0E;
+  --disabled-text: #4B9651;
+
+  --annotation-blue: #00FF41;
+  --annotation-text: #00FF41;
+  --annotation-bg: rgba(0, 255, 65, 0.1);
+
+  --current-font: var(--font-mono);
+}
+
+/* ==========================================================================
+   6. MATRIX TEMPLATE - LIGHT MODE (Cyber Neon Light)
+   ========================================================================== */
+[data-template="matrix"][data-theme="light"] {
+  --bg-main: #EDF7EE;
+  --bg-alt: #E2F2E4;
+  --bg-nav: rgba(226, 242, 228, 0.94);
+  --bg-card: #FFFFFF;
+  --bg-popover: #FFFFFF;
+
+  --text-heading: #063810;
+  --text-body: #0E481A;
+  --text-secondary: #1C632C;
+  --text-muted: #3B7C49;
+  --text-link: #008722;
+  --link-hover: #005615;
+
+  --accent-primary: #00A82B;
+  --accent-muted: #88C495;
+
+  --btn-primary-bg: #008722;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #00A82B;
+
+  --btn-secondary-bg: #FFFFFF;
+  --btn-secondary-text: #008722;
+  --btn-secondary-border: #008722;
+
+  --nav-active: #008722;
+  --focus-outline: #008722;
+  --border-card: #B1DBB9;
+  --border-subtle: #CBE6D1;
+  --divider: #B1DBB9;
+  --shadow: 0 4px 18px rgba(0, 135, 34, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 135, 34, 0.16);
+
+  --input-bg: #FFFFFF;
+  --input-text: #063810;
+  --input-placeholder: #3B7C49;
+
+  --tag-bg: #E2F2E4;
+  --tag-text: #063810;
+  --skill-indicator: #008722;
+
+  --timeline-line: #B1DBB9;
+  --timeline-dot: #008722;
+
+  --social-icon: #1C632C;
+  --social-hover: #008722;
+
+  --badge-bg: #E2F2E4;
+  --badge-text: #063810;
+
+  --tooltip-bg: #063810;
+  --tooltip-text: #EDF7EE;
+
+  --disabled-bg: #CBE6D1;
+  --disabled-text: #3B7C49;
+
+  --annotation-blue: #008722;
+  --annotation-text: #005615;
+  --annotation-bg: rgba(0, 168, 43, 0.12);
+
+  --current-font: var(--font-mono);
+}

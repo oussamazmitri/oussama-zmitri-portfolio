@@ -1,0 +1,318 @@
+/* ==========================================================================
+   DEV MODE TEMPLATE STYLES
+   Interactive Python IDE / Code Editor experience
+   ========================================================================== */
+
+[data-template="devmode"] {
+  font-family: var(--font-mono);
+
+  .ide-window {
+    margin: 2rem auto 4rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 80vh;
+  }
+
+  /* IDE Top Window Bar */
+  .ide-titlebar {
+    background-color: var(--ide-sidebar);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    user-select: none;
+  }
+
+  .ide-window-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .window-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot-close { background-color: #ef4444; }
+  .dot-min { background-color: #f59e0b; }
+  .dot-max { background-color: #10b981; }
+
+  .ide-window-title {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+
+  .ide-window-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .ide-action-btn {
+    background: transparent;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .ide-action-btn:hover {
+    color: var(--text-heading);
+    border-color: var(--text-heading);
+  }
+
+  /* IDE Body: Sidebar + Editor */
+  .ide-body {
+    display: flex;
+    flex: 1;
+    min-height: 650px;
+  }
+
+  /* File Tree Sidebar */
+  .ide-sidebar {
+    width: 240px;
+    background-color: var(--ide-sidebar);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .sidebar-header {
+    padding: 0.65rem 1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .file-tree {
+    list-style: none;
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tree-folder {
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: default;
+  }
+
+  .file-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem 0.45rem 1.85rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    border-left: 2px solid transparent;
+  }
+
+  .file-item:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--text-heading);
+  }
+
+  .file-item.active {
+    background-color: var(--ide-tab-active);
+    color: var(--accent-primary);
+    border-left-color: var(--accent-primary);
+    font-weight: 600;
+  }
+
+  .file-icon {
+    font-size: 0.85rem;
+  }
+
+  /* Editor Main Area */
+  .ide-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-card);
+    overflow-x: auto;
+  }
+
+  /* Editor Tabs */
+  .editor-tabs-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--ide-tab-bar);
+    border-bottom: 1px solid var(--border-subtle);
+    overflow-x: auto;
+  }
+
+  .editor-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.82rem;
+    background-color: var(--ide-tab-inactive);
+    color: var(--text-muted);
+    border-right: 1px solid var(--border-subtle);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+  }
+
+  .editor-tab:hover {
+    color: var(--text-heading);
+  }
+
+  .editor-tab.active {
+    background-color: var(--ide-tab-active);
+    color: var(--accent-primary);
+    font-weight: 600;
+    border-top: 2px solid var(--accent-primary);
+    padding-top: calc(0.55rem - 2px);
+  }
+
+  .tab-close {
+    font-size: 0.75rem;
+    opacity: 0.5;
+  }
+
+  /* Editor Breadcrumb */
+  .editor-breadcrumb {
+    padding: 0.4rem 1.25rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Editor Code Workspace */
+  .editor-workspace {
+    display: flex;
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    padding: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .gutter-line-numbers {
+    width: 3.5rem;
+    padding: 0 0.75rem;
+    text-align: right;
+    color: var(--ide-gutter-text);
+    user-select: none;
+    border-right: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+  }
+
+  .code-viewport {
+    flex: 1;
+    padding: 0 1.5rem;
+    overflow-x: auto;
+    color: var(--syntax-var);
+  }
+
+  /* Code Syntax Highlighting Classes */
+  .syn-kw { color: var(--syntax-keyword); font-weight: 600; }
+  .syn-def { color: var(--syntax-def); font-weight: 600; }
+  .syn-str { color: var(--syntax-string); }
+  .syn-com { color: var(--syntax-comment); font-style: italic; }
+  .syn-cls { color: var(--syntax-class); font-weight: 600; }
+  .syn-num { color: var(--syntax-number); }
+  .syn-dec { color: var(--syntax-keyword); }
+
+  /* Interactive Code Annotations / Badges in Dev Mode */
+  .code-action-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--tag-bg);
+    border: 1px solid var(--border-card);
+    color: var(--accent-primary);
+    font-size: 0.78rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0.2rem 0;
+    transition: all var(--transition-fast);
+  }
+
+  .code-action-tag:hover {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
+  }
+
+  /* IDE Status Bar */
+  .ide-statusbar {
+    background-color: var(--ide-statusbar);
+    color: #e4e4e7;
+    font-size: 0.75rem;
+    padding: 0.35rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  .statusbar-left, .statusbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status-badge-pfe {
+    background-color: var(--accent-primary);
+    color: #09090b;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+}
+
+/* Dev mode responsive */
+@media (max-width: 768px) {
+  [data-template="devmode"] {
+    .ide-sidebar {
+      display: none;
+    }
+    .editor-tabs-bar {
+      overflow-x: auto;
+    }
+  }
+}

@@ -1,9 +1,205 @@
 {
-"name":"",
-"job_description":"",
-"resume":"",
-"experiences":[],
-"projects":[],
-"education":[],
-"contacts":[]
+"name":"Oussama zmitri",
+"job_description":"IT student backend and AI developer",
+"resume":
+"I'm a fourth-year IT student at Tunis Business School, interested in backend development, artificial intelligence, and data engineering. I enjoy building practical software solutions and exploring technologies that solve real-world problems.",
+"experiences":
+[
+    {
+      "position": "Software Development Intern",
+      "company": "3LM Solutions",
+      "employment_type": "Internship",
+      "work_mode": "Hybrid",
+      "start_date": "2026-06-01",
+      "end_date": "2026-08-31",
+      "description": [
+        "Designed a Software Requirements Specification (SRS) for an application.",
+        "Developed a mobile application using React Native as part of an ERP system."
+      ]
+    },
+    {
+      "position": "Software Development Intern",
+      "company": "SRT Bizerte",
+      "employment_type": "Internship",
+      "work_mode": "On-site",
+      "start_date": "2026-07-31",
+      "end_date": "2026-08-31",
+      "description": [
+        "Developed a platform to reduce manual data entry within the insurance department.",
+        "Contributed to digitizing and improving insurance-related workflows."
+      ]
+    },
+    {
+      "position": "Software Developer",
+      "company": "Ben Miled Store",
+      "employment_type": "Summer Job",
+      "work_mode": "On-site",
+      "start_date": "2025-06-01",
+      "end_date": "2025-08-31",
+      "description": [
+        "Designed and developed a platform to manage sales and track inventory."
+      ]
+    },
+    {
+      "position": "Sales Assistant",
+      "company": "Ben Miled Store",
+      "employment_type": "Summer Job",
+      "work_mode": "On-site",
+      "start_date": "2024-06-01",
+      "end_date": "2024-08-31",
+      "description": [
+        "Assisted customers and handled daily sales transactions.",
+        "Organized products and monitored stock levels.",
+        "Supported daily business operations while developing communication and problem-solving skills."
+      ]
+    }
+  ]
+,
+"projects":
+ [
+    {
+      "title": "Amazon Sales Analytics for Product Profitability Optimization",
+      "technologies": [
+        "Python",
+        "Pandas",
+        "Power BI",
+        "Data Analysis",
+        "Data Cleaning"
+      ],
+      "description": "Developed data-driven analytics for an Amazon seller to optimize product profitability by analyzing sales performance across multiple dimensions and addressing key e-commerce challenges."
+    },
+    {
+      "title": "Tunisian Stock Market Analysis",
+      "technologies": [
+        "R",
+        "PCA",
+        "Regression Modeling",
+        "FactoMineR"
+      ],
+      "description": "Collected and consolidated data from multiple spreadsheets to conduct a multivariate statistical analysis of companies listed on the Tunis Stock Exchange. Applied Principal Component Analysis (PCA) and Linear Regression to identify underlying market factors and predict price movements based on trading volume and volatility."
+    },
+    {
+      "title": "CarthageConnect (Influencer Analytics Platform)",
+      "technologies": [
+        "Python",
+        "Flask",
+        "PostgreSQL",
+        "React"
+      ],
+      "description": "Developed a RESTful API-driven platform featuring a custom Trust Score Engine to evaluate influencer engagement authenticity and professionalize local marketing."
+    },
+    {
+      "title": "TBS Course Management API",
+      "technologies": [
+        "Python",
+        "Flask",
+        "JSON",
+        "Docker",
+        "Swagger"
+      ],
+      "description": "Designed and documented a RESTful API to streamline the management and retrieval of Tunis Business School program data and academic course information."
+    },
+    {
+      "title": "SOTUVER Financial Ratio Analysis",
+      "technologies": [
+        "Financial Statement Analysis",
+        "Financial Ratio Analysis",
+        "Trend Forecasting"
+      ],
+      "description": "Conducted a comprehensive financial ratio analysis of SOTUVER for the 2022–2024 period to evaluate liquidity, operational efficiency, and leverage trends. Used official CMF annual reports to assess the company's ability to meet short-term obligations and manage its capital structure under varying market conditions."
+    }
+  ]
+,
+"education":
+ [
+    {
+      "institution": "Tunis Business School (TBS)",
+      "degree": "Bachelor of Science in Business Administration",
+      "major": "Information Technology",
+      "minor": "Business Analytics",
+      "start_date": "2023",
+      "end_date": "2027",
+      "status": "In Progress"
+    }
+  ]
+,
+"skills": {
+    "programming_languages": [
+      "Python",
+      "R",
+      "JavaScript",
+      "SQL"
+    ],
+    "frameworks_and_libraries": [
+      "Flask",
+      "React",
+      "React Native",
+      "Pandas",
+      "FactoMineR"
+    ],
+    "databases": [
+      "MySQL",
+      "PostgreSQL"
+    ],
+    "data_analysis_and_visualization": [
+      "Power BI",
+      "Microsoft Excel",
+      "Data Cleaning",
+      "Exploratory Data Analysis",
+      "Principal Component Analysis (PCA)",
+      "Linear Regression",
+      "Financial Ratio Analysis"
+    ],
+    "tools_and_technologies": [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Swagger",
+      "REST APIs",
+      "JSON"
+    ],
+    "business_and_professional_skills": [
+      "Problem Solving",
+      "Analytical Thinking",
+      "Teamwork",
+      "Communication",
+      "Customer Service"
+    ],
+    "languages": [
+      {
+        "name": "Arabic",
+        "proficiency": "Native"
+      },
+      {
+        "name": "English",
+        "proficiency": "Fluent"
+      },
+      {
+        "name": "French",
+        "proficiency": "Fluent"
+      },
+      {
+        "name": "Spanish",
+        "proficiency": "Beginner"
+      }
+    ]
+  },
+  "contact": {
+    "email": "oussamazmitri123@gmail.com",
+    "phone": "+216 25918658",
+    "university_email": "zmitri.oussama@tbs.u-tunis.tn",
+    "linkedin": "https://www.linkedin.com/in/zmitri-oussama/",
+    "github": "https://github.com/oussamazmitri",
+    "facebook": null,
+    "instagram": null
+  },
+
+  "volunteer": {
+    "club": "Google Developer Groups Bizerte",
+    "tasks": [
+      "Participated in organizing events.",
+      "Participated in hackathons and technical workshops."
+    ],
+    "description": "Active member of a collaborative tech community where developers and Google technology experts share knowledge, exchange skills, and explore new technologies."
+  }
 }

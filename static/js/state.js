@@ -1,25 +1,27 @@
 /**
  * Centralized State Management
- * Handles Theme (light/dark) and Template (normal/devmode/matrix)
- * Supports persistence, system preference detection, and event broadcasting
+ * Handles Theme (light/dark), Template (normal/devmode/matrix), and Language (en/fr)
+ * Supports persistence in localStorage, system preference detection, and event broadcasting
  */
 
 const STORAGE_KEYS = {
   THEME: 'portfolio_theme',
   TEMPLATE: 'portfolio_template',
-  MATRIX_RAIN: 'portfolio_matrix_rain'
+  MATRIX_RAIN: 'portfolio_matrix_rain',
+  LANGUAGE: 'portfolio_language'
 };
 
 class PortfolioState {
   constructor() {
     this.theme = this.getInitialTheme();
     this.template = this.getInitialTemplate();
+    this.language = this.getInitialLanguage();
     this.matrixRain = localStorage.getItem(STORAGE_KEYS.MATRIX_RAIN) !== 'false';
     this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     this.listeners = [];
 
-    // Apply to DOM on init
+    // Apply initial attributes to DOM
     this.applyToDOM();
 
     // Listen for system theme changes if user hasn't explicitly set one
@@ -40,6 +42,13 @@ class PortfolioState {
     const saved = localStorage.getItem(STORAGE_KEYS.TEMPLATE);
     if (['normal', 'devmode', 'matrix'].includes(saved)) return saved;
     return 'normal';
+  }
+
+  getInitialLanguage() {
+    const saved = localStorage.getItem(STORAGE_KEYS.LANGUAGE);
+    if (saved === 'en' || saved === 'fr') return saved;
+    // Default to English as authoritative default
+    return 'en';
   }
 
   setTheme(newTheme, persist = true) {
@@ -73,6 +82,17 @@ class PortfolioState {
     this.notify();
   }
 
+  setLanguage(newLang, persist = true) {
+    const validLang = (newLang === 'fr') ? 'fr' : 'en';
+    if (this.language === validLang) return;
+    this.language = validLang;
+    if (persist) {
+      localStorage.setItem(STORAGE_KEYS.LANGUAGE, validLang);
+    }
+    this.applyToDOM();
+    this.notify();
+  }
+
   setMatrixRain(active) {
     this.matrixRain = active;
     localStorage.setItem(STORAGE_KEYS.MATRIX_RAIN, String(active));
@@ -82,6 +102,7 @@ class PortfolioState {
   applyToDOM() {
     document.documentElement.setAttribute('data-template', this.template);
     document.documentElement.setAttribute('data-theme', this.theme);
+    document.documentElement.setAttribute('lang', this.language);
   }
 
   subscribe(listener) {

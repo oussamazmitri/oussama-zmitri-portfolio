@@ -1,7 +1,10 @@
 /**
  * Normal Template View Renderer
  * Editorial layout, Sora typography, warm palette, hand-drawn hero annotation
+ * Localized with centralized i18n system
  */
+
+import { t } from '../i18n.js';
 
 export function renderNormalView(container, data, currentPath) {
   if (currentPath === '/side-quests') {
@@ -32,9 +35,9 @@ function renderNormalHome(data) {
               <div class="hero-badge-wrap">
                 <span class="badge">
                   <span class="badge-dot"></span>
-                  PFE 2027 Candidate
+                  ${t('site.pfe_candidate', 'PFE 2027 Candidate')}
                 </span>
-                <span class="tag">Backend & AI</span>
+                <span class="tag">${t('site.backend_ai', 'Backend & AI')}</span>
               </div>
 
               <h1 class="hero-title">${escapeHtml(name)}</h1>
@@ -44,28 +47,28 @@ function renderNormalHome(data) {
 
               <div class="hero-actions">
                 <a href="#projects" class="btn btn-primary">
-                  Explore Work
+                  ${t('hero.explore_work', 'Explore Work')}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
                 </a>
 
                 <div class="cv-dropdown">
                   <button type="button" class="btn btn-secondary cv-trigger-btn" aria-haspopup="true" aria-expanded="false" id="hero-cv-dropdown">
-                    Download CV
+                    ${t('hero.download_cv', 'Download CV')}
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                   </button>
                   <div class="cv-menu" role="menu">
-                    <a href="/apis/get_cv?langauge=english&download=1" class="cv-menu-item" target="_blank" rel="noopener">
-                      <span>English CV</span>
-                      <small class="tag">PDF</small>
+                    <a href="/apis/get_cv?lang=en&download=1" class="cv-menu-item" target="_blank" rel="noopener">
+                      <span>${t('hero.cv_english', 'English CV')}</span>
+                      <small class="tag">${t('hero.pdf_tag', 'PDF')}</small>
                     </a>
-                    <a href="/apis/get_cv?langauge=french&download=1" class="cv-menu-item" target="_blank" rel="noopener">
-                      <span>French CV</span>
-                      <small class="tag">PDF</small>
+                    <a href="/apis/get_cv?lang=fr&download=1" class="cv-menu-item" target="_blank" rel="noopener">
+                      <span>${t('hero.cv_french', 'French CV')}</span>
+                      <small class="tag">${t('hero.pdf_tag', 'PDF')}</small>
                     </a>
                   </div>
                 </div>
 
-                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                <a href="#contact" class="btn btn-secondary">${t('hero.contact_me', 'Contact Me')}</a>
               </div>
             </div>
 
@@ -73,25 +76,25 @@ function renderNormalHome(data) {
             <div class="hero-visual">
               <div class="profile-frame-wrap">
                 <div class="profile-circle-frame" id="profile-frame">
-                  <div class="profile-avatar-fallback">
+                  <img src="/static/images/me_in_suit.png" alt="Oussama Zmitri" class="profile-photo" onerror="this.style.display='none'; const fb = document.getElementById('profile-avatar-fallback'); if(fb) fb.style.display='flex';">
+                  <div class="profile-avatar-fallback" id="profile-avatar-fallback" style="display: none;">
                     <span class="avatar-initials">OZ</span>
-                    <span class="avatar-role-label">AI & Backend</span>
+                    <span class="avatar-role-label">${t('site.avatar_role', 'AI & Backend')}</span>
                   </div>
                 </div>
 
                 <!-- Hand-drawn SVG marker circle & arrow -->
-                <svg class="hand-drawn-annotation" viewBox="0 0 440 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <!-- Rough, imperfect, hand-drawn marker circle around the circular photo frame -->
-                  <path class="marker-stroke marker-circle" d="M 215 48 C 290 44, 358 90, 362 175 C 366 260, 305 322, 218 325 C 130 328, 72 268, 70 178 C 68 96, 128 46, 212 45 C 265 44, 348 72, 355 142" />
-                  
-                  <!-- Rough hand-drawn curved arrow pointing toward the photo -->
-                  <path class="marker-stroke marker-arrow" d="M 395 24 C 375 22, 350 35, 332 55 C 318 70, 305 92, 298 108" />
-                  <path class="marker-stroke marker-arrow" d="M 292 92 L 297 110 L 314 107" />
+                <svg class="hand-drawn-annotation" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- Hand-drawn circle encircling the photo -->
+                  <path class="marker-stroke marker-circle" d="M 180 33 C 261 33, 327 99, 327 180 C 327 261, 261 327, 180 327 C 99 327, 33 261, 33 180 C 33 99, 99 33, 178 33 C 235 33, 310 58, 322 118" />
+                  <!-- Hand-drawn curved arrow pointing from badge to photo -->
+                  <path class="marker-stroke marker-arrow" d="M 330 70 C 320 88, 305 102, 285 110" />
+                  <path class="marker-stroke marker-arrow" d="M 278 97 L 285 110 L 298 103" />
                 </svg>
 
                 <!-- Handwritten Scribbled Annotation Badge -->
                 <div class="annotation-text-badge">
-                  Looking for a PFE Internship!
+                  ${t('hero.annotation', 'Looking for a PFE Internship!')}
                 </div>
               </div>
             </div>
@@ -99,44 +102,100 @@ function renderNormalHome(data) {
         </div>
       </section>
 
+      <!-- SECTION QUICK NAVIGATION PILLS -->
+      <nav class="section-quick-nav" aria-label="${t('nav.menu_aria', 'Section Navigation')}" id="section-nav">
+        <div class="container">
+          <div class="section-nav-pills">
+            <a href="#about" class="section-nav-pill" data-section="about">
+              <span class="pill-num">01</span>
+              <span class="pill-label">${t('nav.section_about', 'Background')}</span>
+            </a>
+            <a href="#skills" class="section-nav-pill" data-section="skills">
+              <span class="pill-num">02</span>
+              <span class="pill-label">${t('nav.section_skills', 'Skills')}</span>
+            </a>
+            <a href="#projects" class="section-nav-pill" data-section="projects">
+              <span class="pill-num">03</span>
+              <span class="pill-label">${t('nav.section_projects', 'Projects')}</span>
+            </a>
+            <a href="#experience" class="section-nav-pill" data-section="experience">
+              <span class="pill-num">04</span>
+              <span class="pill-label">${t('nav.section_experience', 'Experience')}</span>
+            </a>
+            <a href="#education" class="section-nav-pill" data-section="education">
+              <span class="pill-num">05</span>
+              <span class="pill-label">${t('nav.section_education', 'Education')}</span>
+            </a>
+            <a href="#contact" class="section-nav-pill" data-section="contact">
+              <span class="pill-num">06</span>
+              <span class="pill-label">${t('nav.section_contact', 'Contact')}</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
       <!-- 2. ABOUT SECTION -->
       <section class="section-block alt-bg" id="about">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">01 // Background</span>
-            <h2 class="section-title">Engineering Solid Systems with Data & AI</h2>
-            <p class="section-desc">Bridging IT backend engineering with statistical business analytics at Tunis Business School.</p>
+            <span class="section-label">${t('about.label', '01 // Background')}</span>
+            <h2 class="section-title">${t('about.title', 'Engineering Solid Systems with Data & AI')}</h2>
+            <p class="section-desc">${t('about.desc', 'Bridging IT backend engineering with statistical business analytics at Tunis Business School.')}</p>
           </div>
 
-          <div class="about-grid">
+          <div class="about-content-wrap">
             <div class="about-narrative">
-              <p>${escapeHtml(resume)}</p>
-              <p>With an educational foundation at Tunis Business School combining Information Technology with Business Analytics, I focus on building reliable software platforms, designing clean RESTful APIs, and translating complex data into actionable operational insights.</p>
+              <p class="lead-text">${escapeHtml(resume)}</p>
+              <p>${t('about.narrative_2', 'With an educational foundation at Tunis Business School combining Information Technology with Business Analytics, I focus on building reliable software platforms, designing clean RESTful APIs, and translating complex data into actionable operational insights.')}</p>
             </div>
 
-            <div class="about-highlights">
+            <!-- 01 // Background 3 Feature Boxes -->
+            <div class="about-highlights-grid">
               <div class="highlight-card">
-                <h4>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
-                  Backend Architecture
-                </h4>
-                <p>Designing RESTful APIs with Python, Flask, Docker, and SQL databases, focused on clean contracts, maintainability, and reliability.</p>
+                <div class="highlight-icon-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+                </div>
+                <div class="highlight-body">
+                  <h4>${t('about.highlight_1_title', 'Backend Architecture')}</h4>
+                  <p>${t('about.highlight_1_desc', 'Designing RESTful APIs with Python, Flask, Docker, and SQL databases, focused on clean contracts, maintainability, and reliability.')}</p>
+                  <div class="highlight-tags">
+                    <span class="tag-pill">Python</span>
+                    <span class="tag-pill">Flask</span>
+                    <span class="tag-pill">REST APIs</span>
+                    <span class="tag-pill">Docker</span>
+                  </div>
+                </div>
               </div>
 
               <div class="highlight-card">
-                <h4>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                  Data & Statistical Modeling
-                </h4>
-                <p>Multivariate statistical analysis, PCA, regression modeling, and financial analytics with R, FactoMineR, and Pandas.</p>
+                <div class="highlight-icon-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <div class="highlight-body">
+                  <h4>${t('about.highlight_2_title', 'Data & Statistical Modeling')}</h4>
+                  <p>${t('about.highlight_2_desc', 'Multivariate statistical analysis, PCA, regression modeling, and financial analytics with R, FactoMineR, and Pandas.')}</p>
+                  <div class="highlight-tags">
+                    <span class="tag-pill">R</span>
+                    <span class="tag-pill">PCA</span>
+                    <span class="tag-pill">FactoMineR</span>
+                    <span class="tag-pill">Pandas</span>
+                  </div>
+                </div>
               </div>
 
               <div class="highlight-card">
-                <h4>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                  Business Analytics
-                </h4>
-                <p>Integrating analytical thinking, financial statement ratios, and profit optimization into software architecture.</p>
+                <div class="highlight-icon-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div class="highlight-body">
+                  <h4>${t('about.highlight_3_title', 'Business Analytics')}</h4>
+                  <p>${t('about.highlight_3_desc', 'Integrating analytical thinking, financial statement ratios, and profit optimization into software architecture.')}</p>
+                  <div class="highlight-tags">
+                    <span class="tag-pill">TBS</span>
+                    <span class="tag-pill">Financial Ratios</span>
+                    <span class="tag-pill">Optimization</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -147,19 +206,19 @@ function renderNormalHome(data) {
       <section class="section-block" id="skills">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">02 // Technical Capabilities</span>
-            <h2 class="section-title">Skills & Technologies</h2>
-            <p class="section-desc">Technologies, analytical methods, and engineering tools applied across development and data projects.</p>
+            <span class="section-label">${t('skills.label', '02 // Technical Capabilities')}</span>
+            <h2 class="section-title">${t('skills.title', 'Skills & Technologies')}</h2>
+            <p class="section-desc">${t('skills.desc', 'Technologies, analytical methods, and engineering tools applied across development and data projects.')}</p>
           </div>
 
           <!-- Interactive Filter Tabs -->
           <div class="skills-filter-bar">
-            <button type="button" class="skills-filter-btn active" data-filter="all">All Skills</button>
-            <button type="button" class="skills-filter-btn" data-filter="languages">Programming Languages</button>
-            <button type="button" class="skills-filter-btn" data-filter="frameworks">Frameworks & Libraries</button>
-            <button type="button" class="skills-filter-btn" data-filter="data">Data & AI</button>
-            <button type="button" class="skills-filter-btn" data-filter="tools">Databases & Tools</button>
-            <button type="button" class="skills-filter-btn" data-filter="spoken">Spoken Languages</button>
+            <button type="button" class="skills-filter-btn active" data-filter="all">${t('skills.filters.all', 'All Skills')}</button>
+            <button type="button" class="skills-filter-btn" data-filter="languages">${t('skills.filters.languages', 'Programming Languages')}</button>
+            <button type="button" class="skills-filter-btn" data-filter="frameworks">${t('skills.filters.frameworks', 'Frameworks & Libraries')}</button>
+            <button type="button" class="skills-filter-btn" data-filter="data">${t('skills.filters.data', 'Data & AI')}</button>
+            <button type="button" class="skills-filter-btn" data-filter="tools">${t('skills.filters.tools', 'Databases & Tools')}</button>
+            <button type="button" class="skills-filter-btn" data-filter="spoken">${t('skills.filters.spoken', 'Spoken Languages')}</button>
           </div>
 
           <div class="skills-grid">
@@ -168,7 +227,7 @@ function renderNormalHome(data) {
               <div class="skill-group-header">
                 <span class="skill-group-title">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                  Programming Languages
+                  ${t('skills.groups.programming_languages', 'Programming Languages')}
                 </span>
                 <span class="tag">${skills.programming_languages ? skills.programming_languages.length : 0}</span>
               </div>
@@ -182,7 +241,7 @@ function renderNormalHome(data) {
               <div class="skill-group-header">
                 <span class="skill-group-title">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                  Frameworks & Libraries
+                  ${t('skills.groups.frameworks_and_libraries', 'Frameworks & Libraries')}
                 </span>
                 <span class="tag">${skills.frameworks_and_libraries ? skills.frameworks_and_libraries.length : 0}</span>
               </div>
@@ -196,7 +255,7 @@ function renderNormalHome(data) {
               <div class="skill-group-header">
                 <span class="skill-group-title">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                  Databases
+                  ${t('skills.groups.databases', 'Databases')}
                 </span>
                 <span class="tag">${skills.databases ? skills.databases.length : 0}</span>
               </div>
@@ -210,7 +269,7 @@ function renderNormalHome(data) {
               <div class="skill-group-header">
                 <span class="skill-group-title">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                  Data & Statistical Analysis
+                  ${t('skills.groups.data_analysis_and_visualization', 'Data & Statistical Analysis')}
                 </span>
                 <span class="tag">${skills.data_analysis_and_visualization ? skills.data_analysis_and_visualization.length : 0}</span>
               </div>
@@ -224,7 +283,7 @@ function renderNormalHome(data) {
               <div class="skill-group-header">
                 <span class="skill-group-title">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                  Tools & DevOps
+                  ${t('skills.groups.tools_and_technologies', 'Tools & DevOps')}
                 </span>
                 <span class="tag">${skills.tools_and_technologies ? skills.tools_and_technologies.length : 0}</span>
               </div>
@@ -238,7 +297,7 @@ function renderNormalHome(data) {
               <div class="skill-group-header">
                 <span class="skill-group-title">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  Business & Professional
+                  ${t('skills.groups.business_and_professional_skills', 'Business & Professional')}
                 </span>
                 <span class="tag">${skills.business_and_professional_skills ? skills.business_and_professional_skills.length : 0}</span>
               </div>
@@ -252,7 +311,7 @@ function renderNormalHome(data) {
               <div class="skill-group-header">
                 <span class="skill-group-title">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                  Spoken Languages
+                  ${t('skills.groups.spoken_languages', 'Spoken Languages')}
                 </span>
                 <span class="tag">${skills.languages ? skills.languages.length : 0}</span>
               </div>
@@ -273,31 +332,31 @@ function renderNormalHome(data) {
       <section class="section-block alt-bg" id="projects">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">03 // Featured Work</span>
-            <h2 class="section-title">Projects & Implementations</h2>
-            <p class="section-desc">A showcase of backend API services, multivariate statistical research, and enterprise analytics projects.</p>
+            <span class="section-label">${t('projects.label', '03 // Featured Work')}</span>
+            <h2 class="section-title">${t('projects.title', 'Projects & Implementations')}</h2>
+            <p class="section-desc">${t('projects.desc', 'A showcase of backend API services, multivariate statistical research, and enterprise analytics projects.')}</p>
           </div>
 
           <div class="projects-grid">
             ${(projects || []).map((proj, idx) => `
               <article class="project-card">
                 <div class="project-header">
-                  <span class="project-number">PROJECT // 0${idx + 1}</span>
+                  <span class="project-number">${t('projects.project_prefix', 'PROJECT // 0')}${idx + 1}</span>
                   <h3 class="project-title">${escapeHtml(proj.title)}</h3>
-                  <p class="project-description">${escapeHtml(proj.description)}</p>
+                  <p class="project-description">${Array.isArray(proj.description) ? proj.description.map(d => escapeHtml(d)).join(' ') : escapeHtml(proj.description)}</p>
                 </div>
 
                 <div>
                   <div class="project-tech-list">
-                    ${(proj.technologies || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
+                    ${(proj.technologies || []).map(tName => `<span class="tag">${escapeHtml(tName)}</span>`).join('')}
                   </div>
 
                   <div class="project-footer">
                     <span class="badge">
                       <span class="badge-dot"></span>
-                      Completed
+                      ${t('projects.status_completed', 'Completed')}
                     </span>
-                    ${proj.url ? `<a href="${escapeHtml(proj.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">View Project ↗</a>` : ''}
+                    ${proj.url ? `<a href="${escapeHtml(proj.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">${t('projects.view_project', 'View Project ↗')}</a>` : ''}
                   </div>
                 </div>
               </article>
@@ -310,9 +369,9 @@ function renderNormalHome(data) {
       <section class="section-block" id="experience">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">04 // Career Path</span>
-            <h2 class="section-title">Professional Experience</h2>
-            <p class="section-desc">Practical software engineering internships, operational systems development, and team contributions.</p>
+            <span class="section-label">${t('experience.label', '04 // Career Path')}</span>
+            <h2 class="section-title">${t('experience.title', 'Professional Experience')}</h2>
+            <p class="section-desc">${t('experience.desc', 'Practical software engineering internships, operational systems development, and team contributions.')}</p>
           </div>
 
           <div class="timeline">
@@ -345,8 +404,8 @@ function renderNormalHome(data) {
       <section class="section-block alt-bg" id="education">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">05 // Academic & Community</span>
-            <h2 class="section-title">Education & Volunteering</h2>
+            <span class="section-label">${t('education.label', '05 // Academic & Community')}</span>
+            <h2 class="section-title">${t('education.title', 'Education & Volunteering')}</h2>
           </div>
 
           <div class="edu-vol-grid">
@@ -359,18 +418,18 @@ function renderNormalHome(data) {
                       <h3 class="info-card-title">${escapeHtml(edu.institution)}</h3>
                       <h4 class="info-card-sub">${escapeHtml(edu.degree)}</h4>
                     </div>
-                    <span class="badge">${escapeHtml(edu.status || 'In Progress')}</span>
+                    <span class="badge">${escapeHtml(edu.status || t('education.status_in_progress', 'In Progress'))}</span>
                   </div>
 
                   <div class="info-card-details" style="margin-top: 1.25rem;">
-                    <p><strong>Major:</strong> ${escapeHtml(edu.major)}</p>
-                    ${edu.minor ? `<p><strong>Minor:</strong> ${escapeHtml(edu.minor)}</p>` : ''}
-                    <p><strong>Period:</strong> ${escapeHtml(edu.start_date)} — ${escapeHtml(edu.end_date)}</p>
+                    <p><strong>${t('education.major_label', 'Major:')}</strong> ${escapeHtml(edu.major)}</p>
+                    ${edu.minor ? `<p><strong>${t('education.minor_label', 'Minor:')}</strong> ${escapeHtml(edu.minor)}</p>` : ''}
+                    <p><strong>${t('education.period_label', 'Period:')}</strong> ${escapeHtml(edu.start_date)} — ${escapeHtml(edu.end_date)}</p>
                   </div>
                 </div>
 
                 <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
-                  <span class="tag">Tunis Business School</span>
+                  <span class="tag">${t('education.institution_tag', 'Tunis Business School')}</span>
                 </div>
               </div>
             `).join('')}
@@ -382,21 +441,21 @@ function renderNormalHome(data) {
                   <div class="info-card-header">
                     <div>
                       <h3 class="info-card-title">${escapeHtml(volunteer.club)}</h3>
-                      <h4 class="info-card-sub">Active Community Member</h4>
+                      <h4 class="info-card-sub">${t('education.volunteer_role', 'Active Community Member')}</h4>
                     </div>
-                    <span class="badge">Community</span>
+                    <span class="badge">${t('education.volunteer_badge', 'Community')}</span>
                   </div>
 
                   <div class="info-card-details" style="margin-top: 1.25rem;">
                     <p style="margin-bottom: 0.75rem;">${escapeHtml(volunteer.description)}</p>
                     <ul class="timeline-tasks">
-                      ${(volunteer.tasks || []).map(t => `<li class="timeline-task">${escapeHtml(t)}</li>`).join('')}
+                      ${(volunteer.tasks || []).map(taskText => `<li class="timeline-task">${escapeHtml(taskText)}</li>`).join('')}
                     </ul>
                   </div>
                 </div>
 
                 <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
-                  <span class="tag">GDG Bizerte</span>
+                  <span class="tag">${t('education.volunteer_club_tag', 'GDG Bizerte')}</span>
                 </div>
               </div>
             ` : ''}
@@ -408,9 +467,9 @@ function renderNormalHome(data) {
       <section class="section-block" id="contact">
         <div class="container">
           <div class="section-header">
-            <span class="section-label">06 // Get In Touch</span>
-            <h2 class="section-title">Let’s Connect</h2>
-            <p class="section-desc">Actively seeking a graduation internship (PFE) starting 2027 in Backend Engineering, AI, or Data Engineering.</p>
+            <span class="section-label">${t('contact.label', '06 // Get In Touch')}</span>
+            <h2 class="section-title">${t('contact.title', 'Let’s Connect')}</h2>
+            <p class="section-desc">${t('contact.desc', 'Actively seeking a graduation internship (PFE) starting 2027 in Backend Engineering, AI, or Data Engineering.')}</p>
           </div>
 
           <div class="contact-grid">
@@ -420,7 +479,7 @@ function renderNormalHome(data) {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
                 <div class="contact-info-wrap">
-                  <span class="contact-label">Email</span>
+                  <span class="contact-label">${t('contact.email', 'Email')}</span>
                   <p class="contact-value">${escapeHtml(contact.email)}</p>
                 </div>
               </a>
@@ -432,7 +491,7 @@ function renderNormalHome(data) {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                 </div>
                 <div class="contact-info-wrap">
-                  <span class="contact-label">University Email</span>
+                  <span class="contact-label">${t('contact.university_email', 'University Email')}</span>
                   <p class="contact-value">${escapeHtml(contact.university_email)}</p>
                 </div>
               </a>
@@ -444,7 +503,7 @@ function renderNormalHome(data) {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div class="contact-info-wrap">
-                  <span class="contact-label">Phone</span>
+                  <span class="contact-label">${t('contact.phone', 'Phone')}</span>
                   <p class="contact-value">${escapeHtml(contact.phone)}</p>
                 </div>
               </a>
@@ -456,7 +515,7 @@ function renderNormalHome(data) {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </div>
                 <div class="contact-info-wrap">
-                  <span class="contact-label">LinkedIn</span>
+                  <span class="contact-label">${t('contact.linkedin', 'LinkedIn')}</span>
                   <p class="contact-value">zmitri-oussama ↗</p>
                 </div>
               </a>
@@ -468,7 +527,7 @@ function renderNormalHome(data) {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                 </div>
                 <div class="contact-info-wrap">
-                  <span class="contact-label">GitHub</span>
+                  <span class="contact-label">${t('contact.github', 'GitHub')}</span>
                   <p class="contact-value">oussamazmitri ↗</p>
                 </div>
               </a>
@@ -484,25 +543,25 @@ function renderNormalSideQuests() {
   return `
     <div class="container editorial-page">
       <div class="section-header">
-        <span class="section-label">Field Notes & Explorations</span>
-        <h1 class="section-title">Side Quests</h1>
-        <p class="section-desc">A personal, exploratory laboratory for everyday observations, hardware tests, learning experiments, and side pursuits outside my core portfolio.</p>
+        <span class="section-label">${t('side_quests.label', 'Field Notes & Explorations')}</span>
+        <h1 class="section-title">${t('side_quests.title', 'Side Quests')}</h1>
+        <p class="section-desc">${t('side_quests.desc', 'A personal, exploratory laboratory for everyday observations, hardware tests, learning experiments, and side pursuits outside my core portfolio.')}</p>
       </div>
 
       <div class="empty-state-editorial">
         <div class="empty-state-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <h2 class="empty-state-title">The Quest Log is Currently Quiet</h2>
+        <h2 class="empty-state-title">${t('side_quests.empty_title', 'The Quest Log is Currently Quiet')}</h2>
         <p class="empty-state-text">
-          I am currently focused on academic projects at TBS and seeking my 2027 PFE graduation internship. New personal experiments, mini-tools, and technical field notes will be chronicled here soon.
+          ${t('side_quests.empty_text', 'I am currently focused on academic projects at TBS and seeking my 2027 PFE graduation internship. New personal experiments, mini-tools, and technical field notes will be chronicled here soon.')}
         </p>
         <div class="empty-state-meta">
-          <span>● Status: In Incubation</span>
-          <span>● Log Count: 0 Entries</span>
+          <span>${t('side_quests.status', '● Status: In Incubation')}</span>
+          <span>${t('side_quests.log_count', '● Log Count: 0 Entries')}</span>
         </div>
         <a href="/" data-link class="btn btn-secondary" style="margin-top: 1rem;">
-          ← Return to Main Portfolio
+          ${t('side_quests.return_home', '← Return to Main Portfolio')}
         </a>
       </div>
     </div>
@@ -513,25 +572,25 @@ function renderNormalWriting() {
   return `
     <div class="container editorial-page">
       <div class="section-header">
-        <span class="section-label">Essays & Perspectives</span>
-        <h1 class="section-title">Writing</h1>
-        <p class="section-desc">Technical explanations, engineering breakdowns, statistical case notes, and reflections on building software and AI systems.</p>
+        <span class="section-label">${t('writing.label', 'Essays & Perspectives')}</span>
+        <h1 class="section-title">${t('writing.title', 'Writing')}</h1>
+        <p class="section-desc">${t('writing.desc', 'Technical explanations, engineering breakdowns, statistical case notes, and reflections on building software and AI systems.')}</p>
       </div>
 
       <div class="empty-state-editorial">
         <div class="empty-state-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
         </div>
-        <h2 class="empty-state-title">Drafts in Incubation</h2>
+        <h2 class="empty-state-title">${t('writing.empty_title', 'Drafts in Incubation')}</h2>
         <p class="empty-state-text">
-          Upcoming essays covering multivariate analysis for market forecasting, REST API architectures with Flask, and practical data engineering lessons are currently in preparation.
+          ${t('writing.empty_text', 'Upcoming essays covering multivariate analysis for market forecasting, REST API architectures with Flask, and practical data engineering lessons are currently in preparation.')}
         </p>
         <div class="empty-state-meta">
-          <span>● Status: Drafting Articles</span>
-          <span>● Published: 0 Items</span>
+          <span>${t('writing.status', '● Status: Drafting Articles')}</span>
+          <span>${t('writing.published_count', '● Published: 0 Items')}</span>
         </div>
         <a href="/" data-link class="btn btn-secondary" style="margin-top: 1rem;">
-          ← Return to Main Portfolio
+          ${t('writing.return_home', '← Return to Main Portfolio')}
         </a>
       </div>
     </div>
@@ -575,6 +634,43 @@ function setupNormalInteractions(container) {
         cvBtn.setAttribute('aria-expanded', 'false');
       }
     });
+  }
+
+  // Section Quick-Nav Pill Smooth Scroll & Active Handling
+  const sectionPills = container.querySelectorAll('.section-nav-pill');
+  sectionPills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = pill.getAttribute('href').slice(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        const navHeight = document.querySelector('.site-nav')?.offsetHeight || 70;
+        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 16;
+        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        sectionPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      }
+    });
+  });
+
+  // ScrollSpy for Normal Mode Sections
+  const normalSections = container.querySelectorAll('section[id]');
+  if (normalSections.length > 0 && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          sectionPills.forEach(p => {
+            p.classList.toggle('active', p.dataset.section === id);
+          });
+          document.querySelectorAll('.nav-section-link[data-normal-section]').forEach(link => {
+            link.classList.toggle('active', link.dataset.normalSection === id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    normalSections.forEach(s => observer.observe(s));
   }
 }
 

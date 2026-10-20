@@ -68,13 +68,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2.5rem 1rem;
+    padding: 3rem 1.5rem 2rem;
   }
 
   .profile-frame-wrap {
     position: relative;
     width: 280px;
     height: 280px;
+    margin-top: 1.5rem;
   }
 
   .profile-circle-frame {
@@ -93,10 +94,13 @@
     z-index: 2;
   }
 
-  .profile-circle-frame img {
+  .profile-circle-frame img,
+  .profile-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    border-radius: 50%;
   }
 
   .profile-avatar-fallback {
@@ -118,6 +122,7 @@
     color: var(--text-heading);
     background: linear-gradient(135deg, var(--text-heading), var(--accent-muted));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
@@ -133,10 +138,10 @@
   /* SVG Annotation Container */
   .hand-drawn-annotation {
     position: absolute;
-    top: -45px;
-    left: -50px;
-    width: 440px;
-    height: 380px;
+    top: -40px;
+    left: -40px;
+    width: 360px;
+    height: 360px;
     pointer-events: none;
     z-index: 5;
     overflow: visible;
@@ -165,21 +170,21 @@
 
   .annotation-text-badge {
     position: absolute;
-    top: -10px;
-    right: -25px;
+    top: -28px;
+    right: -45px;
     font-family: var(--font-handwriting);
-    font-size: 1.7rem;
+    font-size: 1.55rem;
     font-weight: 700;
     color: var(--annotation-blue);
-    line-height: 1.1;
-    transform: rotate(4deg);
+    line-height: 1.15;
+    transform: rotate(3deg);
     white-space: nowrap;
     text-shadow: 0 1px 2px rgba(0,0,0,0.05);
     background-color: var(--annotation-bg);
-    padding: 0.25rem 0.75rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 8px;
-    border: 1px dashed var(--annotation-blue);
-    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.1);
+    border: 1.5px dashed var(--annotation-blue);
+    box-shadow: 0 4px 14px rgba(29, 78, 216, 0.12);
     z-index: 6;
   }
 
@@ -194,11 +199,82 @@
   }
 
   /* ==========================================================================
+     SECTION QUICK NAVIGATION PILLS (FULL BUTTONS)
+     ========================================================================== */
+  .section-quick-nav {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--bg-alt);
+    position: sticky;
+    top: 4.25rem;
+    z-index: 30;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .section-nav-pills {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .section-nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .section-nav-pill .pill-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    opacity: 0.9;
+  }
+
+  .section-nav-pill:hover {
+    color: var(--btn-primary-text);
+    background-color: var(--btn-primary-bg);
+    border-color: var(--btn-primary-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .section-nav-pill:hover .pill-num {
+    color: var(--btn-primary-text);
+  }
+
+  .section-nav-pill.active {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
+    font-weight: 700;
+    box-shadow: var(--shadow);
+  }
+
+  .section-nav-pill.active .pill-num {
+    color: var(--btn-primary-text);
+    opacity: 1;
+  }
+
+  /* ==========================================================================
      SECTION CONTAINERS
      ========================================================================== */
   .section-block {
     padding: 5rem 0;
     border-top: 1px solid var(--border-subtle);
+    scroll-margin-top: 8rem;
   }
 
   .section-block.alt-bg {
@@ -206,57 +282,102 @@
   }
 
   /* ==========================================================================
-     ABOUT SECTION
+     ABOUT SECTION (01 // BACKGROUND BOXES)
      ========================================================================== */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 3.5rem;
-    align-items: start;
+  .about-content-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
   }
 
   .about-narrative {
     font-size: 1.15rem;
-    line-height: 1.75;
+    line-height: 1.8;
     color: var(--text-body);
+    max-width: 900px;
+  }
+
+  .about-narrative .lead-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-heading);
+    line-height: 1.7;
+    margin-bottom: 1rem;
   }
 
   .about-narrative p + p {
     margin-top: 1.25rem;
   }
 
-  .about-highlights {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+  /* 01 // Background 3 Feature Boxes Grid */
+  .about-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
   .highlight-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-card);
     border-radius: var(--radius-md);
-    padding: 1.5rem;
+    padding: 1.75rem;
     box-shadow: var(--shadow);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
   }
 
   .highlight-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
+    border-color: var(--border-focus);
   }
 
-  .highlight-card h4 {
-    color: var(--text-heading);
-    font-size: 1.05rem;
-    margin-bottom: 0.4rem;
+  .highlight-icon-wrap {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border-card);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    color: var(--accent-primary);
+    margin-bottom: 1.15rem;
   }
 
-  .highlight-card p {
+  .highlight-body h4 {
+    color: var(--text-heading);
+    font-size: 1.12rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .highlight-body p {
     color: var(--text-secondary);
-    font-size: 0.92rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .highlight-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border-card);
+  }
+
+  .tag-pill {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
   }
 
   /* ==========================================================================
@@ -720,7 +841,7 @@
       justify-content: center;
     }
 
-    .about-grid {
+    .about-highlights-grid {
       grid-template-columns: 1fr;
     }
 
@@ -729,20 +850,31 @@
     }
 
     .profile-frame-wrap {
-      width: 240px;
-      height: 240px;
+      width: 250px;
+      height: 250px;
     }
 
     .hand-drawn-annotation {
-      width: 380px;
-      height: 330px;
-      left: -40px;
-      top: -35px;
+      width: 400px;
+      height: 350px;
+      left: -45px;
+      top: -42px;
     }
 
     .annotation-text-badge {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
+      top: -42px;
       right: -10px;
+      padding: 0.25rem 0.65rem;
+    }
+
+    .section-nav-pills {
+      gap: 0.4rem;
+    }
+
+    .section-nav-pill {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.82rem;
     }
   }
 }

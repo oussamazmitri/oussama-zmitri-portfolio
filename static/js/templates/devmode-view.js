@@ -1,7 +1,10 @@
 /**
  * Dev Mode Template View Renderer
  * Python IDE / Editor Experience with tabs, file tree, line numbers, and syntax highlighting
+ * Localized with centralized i18n system
  */
+
+import { t, getLanguage } from '../i18n.js';
 
 let activeFileId = 'profile.py';
 
@@ -33,7 +36,7 @@ export function renderDevModeView(container, data, currentPath) {
           <div class="ide-window-actions">
             <button type="button" class="ide-action-btn" id="ide-run-cv">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              <span>Download CV</span>
+              <span>${t('devmode.download_cv', 'Download CV')}</span>
             </button>
           </div>
         </div>
@@ -43,8 +46,8 @@ export function renderDevModeView(container, data, currentPath) {
           <!-- Sidebar -->
           <aside class="ide-sidebar">
             <div class="sidebar-header">
-              <span>EXPLORER: PORTFOLIO</span>
-              <span>src/</span>
+              <span>${t('devmode.explorer_title', 'EXPLORER: PORTFOLIO')}</span>
+              <span>${t('devmode.explorer_src', 'src/')}</span>
             </div>
 
             <ul class="file-tree">
@@ -64,9 +67,9 @@ export function renderDevModeView(container, data, currentPath) {
 
             <!-- Breadcrumb -->
             <div class="editor-breadcrumb">
-              <span>portfolio</span>
+              <span>${t('devmode.breadcrumb_root', 'portfolio')}</span>
               <span>›</span>
-              <span>src</span>
+              <span>${t('devmode.breadcrumb_src', 'src')}</span>
               <span>›</span>
               <span style="color: var(--text-heading); font-weight: 600;">${activeFileId}</span>
             </div>
@@ -88,22 +91,22 @@ export function renderDevModeView(container, data, currentPath) {
           <div class="statusbar-left">
             <div class="status-item">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              <span>Python 3.13.9 64-bit</span>
+              <span>${t('devmode.python_runtime', 'Python 3.13.9 64-bit')}</span>
             </div>
             <div class="status-item">
-              <span>🌿 git:(main*)</span>
+              <span>${t('devmode.git_branch', '🌿 git:(main*)')}</span>
             </div>
           </div>
 
           <div class="statusbar-right">
             <div class="status-item">
-              <span>UTF-8</span>
+              <span>${t('devmode.encoding', 'UTF-8')}</span>
             </div>
             <div class="status-item">
-              <span>Spaces: 4</span>
+              <span>${t('devmode.spaces', 'Spaces: 4')}</span>
             </div>
             <div class="status-item">
-              <span class="status-badge-pfe">PFE: Searching Active</span>
+              <span class="status-badge-pfe">${t('devmode.pfe_status', 'PFE: Searching Active')}</span>
             </div>
           </div>
         </footer>
@@ -169,7 +172,6 @@ function renderActiveCodeBuffer(container, data) {
   const codeHtml = generateCodeForFile(activeFileId, data);
   codeArea.innerHTML = codeHtml;
 
-  // Compute number of lines in output
   const lineCount = (codeHtml.match(/<div class="code-line">/g) || []).length || 20;
   let gutterHtml = '';
   for (let i = 1; i <= lineCount; i++) {
@@ -188,7 +190,7 @@ function generateCodeForFile(fileId, data) {
 <div class="code-line"><span class="syn-com">Module: profile.py</span></div>
 <div class="code-line"><span class="syn-com">Author: ${escapeHtml(name)}</span></div>
 <div class="code-line"><span class="syn-com">Role: ${escapeHtml(job_description)}</span></div>
-<div class="code-line"><span class="syn-com">Notice: LOOKING FOR A PFE INTERNSHIP (2027)</span></div>
+<div class="code-line"><span class="syn-com">Notice: ${t('devmode.notice_pfe', 'LOOKING FOR A PFE INTERNSHIP (2027)')}</span></div>
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"></div>
 <div class="code-line"><span class="syn-kw">from</span> dataclasses <span class="syn-kw">import</span> dataclass</div>
@@ -198,28 +200,28 @@ function generateCodeForFile(fileId, data) {
 <div class="code-line"><span class="syn-kw">class</span> <span class="syn-cls">CandidateProfile</span>:</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;name: <span class="syn-cls">str</span> = <span class="syn-str">"${escapeHtml(name)}"</span></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;headline: <span class="syn-cls">str</span> = <span class="syn-str">"${escapeHtml(job_description)}"</span></div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;status: <span class="syn-cls">str</span> = <span class="syn-str">"Looking for a PFE Internship!"</span></div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;status: <span class="syn-cls">str</span> = <span class="syn-str">"${t('devmode.status_pfe', 'Looking for a PFE Internship!')}"</span></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;institution: <span class="syn-cls">str</span> = <span class="syn-str">"Tunis Business School (TBS)"</span></div>
 <div class="code-line"></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">def</span> <span class="syn-def">get_bio</span>(self) -> <span class="syn-cls">str</span>:</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">return</span> <span class="syn-str">"""${escapeHtml(resume)}"""</span></div>
 <div class="code-line"></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">def</span> <span class="syn-def">download_curriculum_vitae</span>(self, language: <span class="syn-cls">str</span> = <span class="syn-str">"english"</span>):</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-com"># Interactive action trigger</span></div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-com"># ${t('devmode.interactive_action', 'Interactive action trigger')}</span></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">return</span> {</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"en"</span>: <a href="/apis/get_cv?langauge=english&download=1" class="code-action-tag" target="_blank">▶ Run: download_cv('english')</a>,</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"fr"</span>: <a href="/apis/get_cv?langauge=french&download=1" class="code-action-tag" target="_blank">▶ Run: download_cv('french')</a></div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"en"</span>: <a href="/apis/get_cv?lang=en&download=1" class="code-action-tag" target="_blank">${t('devmode.run_en', "▶ Run: download_cv('english')")}</a>,</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"fr"</span>: <a href="/apis/get_cv?lang=fr&download=1" class="code-action-tag" target="_blank">${t('devmode.run_fr', "▶ Run: download_cv('french')")}</a></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</div>
 <div class="code-line"></div>
 <div class="code-line">profile = <span class="syn-cls">CandidateProfile</span>()</div>
-<div class="code-line"><span class="syn-kw">print</span>(f<span class="syn-str">"Initialized profile for {profile.name} - {profile.status}"</span>)</div>
+<div class="code-line"><span class="syn-kw">print</span>(f<span class="syn-str">"${t('devmode.init_message', 'Initialized profile for')} {profile.name} - {profile.status}"</span>)</div>
 `;
 
     case 'skills.py':
       return `
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"><span class="syn-com">Module: skills.py</span></div>
-<div class="code-line"><span class="syn-com">Technical stack and statistical proficiencies</span></div>
+<div class="code-line"><span class="syn-com">${t('devmode.module_skills', 'Technical stack and statistical proficiencies')}</span></div>
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"></div>
 <div class="code-line"><span class="syn-kw">from</span> typing <span class="syn-kw">import</span> Dict, List</div>
@@ -240,7 +242,7 @@ function generateCodeForFile(fileId, data) {
       return `
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"><span class="syn-com">Module: projects.py</span></div>
-<div class="code-line"><span class="syn-com">Backend and analytics production deliverables</span></div>
+<div class="code-line"><span class="syn-com">${t('devmode.module_projects', 'Backend and analytics production deliverables')}</span></div>
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"></div>
 <div class="code-line">PROJECTS = [</div>
@@ -249,7 +251,7 @@ ${(projects || []).map((p, i) => `
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"id"</span>: <span class="syn-num">${i + 1}</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"title"</span>: <span class="syn-str">"${escapeHtml(p.title)}"</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"technologies"</span>: ${JSON.stringify(p.technologies || [])},</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"description"</span>: <span class="syn-str">"${escapeHtml(p.description)}"</span>${p.url ? `,` : ''}</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"description"</span>: <span class="syn-str">"${escapeHtml(Array.isArray(p.description) ? p.description.join(' ') : p.description)}"</span>${p.url ? `,` : ''}</div>
 ${p.url ? `<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"url"</span>: <a href="${escapeHtml(p.url)}" target="_blank" class="code-action-tag">Open project URL ↗</a></div>` : ''}
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;},</div>
 `).join('')}
@@ -260,7 +262,7 @@ ${p.url ? `<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs
       return `
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"><span class="syn-com">Module: experience.py</span></div>
-<div class="code-line"><span class="syn-com">Chronological software development and internship history</span></div>
+<div class="code-line"><span class="syn-com">${t('devmode.module_experience', 'Chronological software development and internship history')}</span></div>
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"></div>
 <div class="code-line">EXPERIENCES = [</div>
@@ -281,7 +283,7 @@ ${(experiences || []).map(exp => `
       return `
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"><span class="syn-com">Module: education.py</span></div>
-<div class="code-line"><span class="syn-com">Academic qualifications and community leadership</span></div>
+<div class="code-line"><span class="syn-com">${t('devmode.module_education', 'Academic qualifications and community leadership')}</span></div>
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"></div>
 <div class="code-line">EDUCATION = [</div>
@@ -292,7 +294,7 @@ ${(education || []).map(edu => `
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"major"</span>: <span class="syn-str">"${escapeHtml(edu.major)}"</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"minor"</span>: <span class="syn-str">"${escapeHtml(edu.minor || 'None')}"</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"period"</span>: (<span class="syn-str">"${escapeHtml(edu.start_date)}"</span>, <span class="syn-str">"${escapeHtml(edu.end_date)}"</span>),</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"status"</span>: <span class="syn-str">"${escapeHtml(edu.status || 'In Progress')}"</span></div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"status"</span>: <span class="syn-str">"${escapeHtml(edu.status || t('education.status_in_progress', 'In Progress'))}"</span></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;},</div>
 `).join('')}
 <div class="code-line">]</div>
@@ -308,7 +310,7 @@ ${(education || []).map(edu => `
       return `
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"><span class="syn-com">Module: contact.py</span></div>
-<div class="code-line"><span class="syn-com">Direct links and channels</span></div>
+<div class="code-line"><span class="syn-com">${t('devmode.module_contact', 'Direct links and channels')}</span></div>
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"></div>
 <div class="code-line">CONTACTS = {</div>
@@ -324,37 +326,33 @@ ${(education || []).map(edu => `
       return `
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"><span class="syn-com">Module: side_quests.py</span></div>
-<div class="code-line"><span class="syn-com">Exploratory lab, everyday observations, and side pursuits.</span></div>
-<div class="code-line"><span class="syn-com">Notice: Currently 0 active items. Draft pipeline standing by.</span></div>
+<div class="code-line"><span class="syn-com">${t('devmode.module_side_quests', 'Exploratory lab, everyday observations, and side pursuits.')}</span></div>
+<div class="code-line"><span class="syn-com">Notice: ${t('side_quests.status', '● Status: In Incubation')}</span></div>
 <div class="code-line"><span class="syn-com">"""</span></div>
 <div class="code-line"></div>
 <div class="code-line"><span class="syn-kw">class</span> <span class="syn-cls">SideQuestRegistry</span>:</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;status: <span class="syn-cls">str</span> = <span class="syn-str">"In Incubation"</span></div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;status: <span class="syn-cls">str</span> = <span class="syn-str">"${t('side_quests.status', 'In Incubation')}"</span></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;items: <span class="syn-cls">list</span> = []</div>
 <div class="code-line"></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">def</span> <span class="syn-def">describe</span>(self):</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">return</span> (</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"Experiments, hardware hacks, and personal side-projects "</span></div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"outside the main portfolio will be logged here."</span></div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"${t('side_quests.desc', 'A personal, exploratory laboratory for everyday observations, hardware tests, learning experiments, and side pursuits outside my core portfolio.')}"</span></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</div>
 <div class="code-line"></div>
 <div class="code-line">registry = <span class="syn-cls">SideQuestRegistry</span>()</div>
-<div class="code-line"><span class="syn-com"># Return to home: <a href="/" data-link class="code-action-tag">← Go to Main Portfolio</a></span></div>
+<div class="code-line"><span class="syn-com"># <a href="/" data-link class="code-action-tag">${t('side_quests.return_home', '← Return to Main Portfolio')}</a></span></div>
 `;
 
     case 'writing.md':
       return `
-<div class="code-line"><span class="syn-com"># Writing & Perspectives</span></div>
+<div class="code-line"><span class="syn-com"># ${t('writing.title', 'Writing')}</span></div>
 <div class="code-line"></div>
-<div class="code-line"><span class="syn-com">> Editorial status: Drafts in incubation (0 published articles)</span></div>
+<div class="code-line"><span class="syn-com">> ${t('writing.empty_title', 'Drafts in incubation')}</span></div>
 <div class="code-line"></div>
-<div class="code-line">Upcoming technical publications and architectural notes:</div>
-<div class="code-line">- Multivariate Statistical Analysis on the Tunis Stock Exchange</div>
-<div class="code-line">- Designing Maintainable Backend APIs with Python and Flask</div>
-<div class="code-line">- Data Cleaning Pipelines: From Raw Spreadsheets to Power BI</div>
+<div class="code-line">${t('writing.desc', 'Technical explanations, engineering breakdowns, statistical case notes, and reflections on building software and AI systems.')}</div>
 <div class="code-line"></div>
 <div class="code-line"><span class="syn-com">---</span></div>
-<div class="code-line"><a href="/" data-link class="code-action-tag">← Return to Main Portfolio</a></div>
+<div class="code-line"><a href="/" data-link class="code-action-tag">${t('writing.return_home', '← Return to Main Portfolio')}</a></div>
 `;
 
     default:
@@ -363,13 +361,12 @@ ${(education || []).map(edu => `
 }
 
 function setupDevModeInteractions(container, data, currentPath) {
-  // Tab switching
   const tabs = container.querySelectorAll('.editor-tab');
   const treeItems = container.querySelectorAll('.file-item');
 
   const switchToFile = (fileId) => {
     activeFileId = fileId;
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.file === fileId));
+    tabs.forEach(tEl => tEl.classList.toggle('active', tEl.dataset.file === fileId));
     treeItems.forEach(item => item.classList.toggle('active', item.dataset.file === fileId));
 
     const titleEl = container.querySelector('.ide-window-title span');
@@ -396,7 +393,8 @@ function setupDevModeInteractions(container, data, currentPath) {
   const runCvBtn = container.querySelector('#ide-run-cv');
   if (runCvBtn) {
     runCvBtn.addEventListener('click', () => {
-      window.open('/apis/get_cv?langauge=english&download=1', '_blank');
+      const activeLang = getLanguage();
+      window.open(`/apis/get_cv?lang=${activeLang}&download=1`, '_blank');
     });
   }
 }

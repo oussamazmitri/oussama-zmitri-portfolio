@@ -1,17 +1,14 @@
 /**
  * Client-Side Router
  * Handles navigation between /, /side-quests, and /writing
- * Supports pushState, popstate, and link hijacking
+ * Supports pushState, popstate, link hijacking, and localized page titles
  */
+
+import { t } from './i18n.js';
 
 class Router {
   constructor() {
-    this.routes = {
-      '/': { title: 'Oussama Zmitri | Backend & AI Developer' },
-      '/side-quests': { title: 'Side Quests & Experiments | Oussama Zmitri' },
-      '/writing': { title: 'Writing & Notes | Oussama Zmitri' }
-    };
-
+    this.validRoutes = ['/', '/side-quests', '/writing'];
     this.currentPath = this.normalizePath(window.location.pathname);
     this.routeListeners = [];
 
@@ -35,7 +32,17 @@ class Router {
   normalizePath(path) {
     if (!path || path === '') return '/';
     const clean = path.replace(/\/+$/, '') || '/';
-    return this.routes[clean] ? clean : '/';
+    return this.validRoutes.includes(clean) ? clean : '/';
+  }
+
+  getTitleForPath(path) {
+    if (path === '/side-quests') {
+      return t('routes.side_quests_title', 'Side Quests & Experiments | Oussama Zmitri');
+    }
+    if (path === '/writing') {
+      return t('routes.writing_title', 'Writing & Notes | Oussama Zmitri');
+    }
+    return t('routes.home_title', 'Oussama Zmitri | Backend & AI Developer');
   }
 
   navigate(url) {
@@ -47,9 +54,12 @@ class Router {
     this.updateView();
   }
 
+  updateTitle() {
+    document.title = this.getTitleForPath(this.currentPath);
+  }
+
   updateView() {
-    const routeConfig = this.routes[this.currentPath] || this.routes['/'];
-    document.title = routeConfig.title;
+    this.updateTitle();
 
     // Update active nav links in desktop and mobile menu
     document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {

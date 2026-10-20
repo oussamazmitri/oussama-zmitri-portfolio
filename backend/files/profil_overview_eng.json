@@ -1,0 +1,497 @@
+{
+  "name": "Oussama zmitri",
+  "job_description": "IT Student | Backend & AI Developer",
+  "resume": "Fourth-year Information Technology student at Tunis Business School, combining IT infrastructure administration and maintenance, software development, and business analytics. Experienced in IT support and troubleshooting, backend API development, web and mobile applications, semantic search systems, and data analysis. Interested in backend engineering, artificial intelligence, and data engineering, with a focus on developing practical solutions to real-world problems.",
+  "experiences": [
+    {
+      "position": "Software Development Intern",
+      "company": "3LM Solutions",
+      "employment_type": "Internship",
+      "work_mode": "Hybrid",
+      "start_date": "2026-06-01",
+      "end_date": "2026-08-31",
+      "description": [
+        "Designed a Software Requirements Specification (SRS) for an application.",
+        "Developed a mobile application using React Native as part of an ERP system."
+      ]
+    },
+    {
+      "position": "Software Development Intern",
+      "company": "SRT Bizerte",
+      "employment_type": "Internship",
+      "work_mode": "On-site",
+      "start_date": "2026-07-31",
+      "end_date": "2026-08-31",
+      "description": [
+        "Developed a platform to reduce manual data entry within the insurance department.",
+        "Contributed to digitizing and improving insurance-related workflows."
+      ]
+    },
+{
+      "position": "Freelance Software Developer",
+      "company": "Academic Client Project",
+      "employment_type": "Freelance",
+      "work_mode": "Remote",
+      "start_date": "2026-04-04",
+      "end_date": "2026-06-12",
+      "description": [
+        "Designed and developed a bus management system for an end-of-study project, covering bus, station, andbus–station interaction management.",
+        " Implemented backend logic and data management to support transport operations"
+      ]
+    },
+{
+      "position": "Software Developer",
+      "company": "Ben Miled Store",
+      "employment_type": "Summer Job",
+      "work_mode": "On-site",
+      "start_date": "2025-06-01",
+      "end_date": "2025-08-31",
+      "description": [
+        "Designed and developed a platform to manage sales and track inventory."
+      ]
+    },
+
+    {
+      "position": "Software Developer",
+      "company": "Ben Miled Store",
+      "employment_type": "Summer Job",
+      "work_mode": "On-site",
+      "start_date": "2025-06-01",
+      "end_date": "2025-08-31",
+      "description": [
+        "Designed and developed a platform to manage sales and track inventory."
+      ]
+    },
+    {
+      "position": "Sales Assistant",
+      "company": "Ben Miled Store",
+      "employment_type": "Summer Job",
+      "work_mode": "On-site",
+      "start_date": "2024-06-01",
+      "end_date": "2024-08-31",
+      "description": [
+        "Assisted customers and handled daily sales transactions.",
+        "Organized products and monitored stock levels.",
+        "Supported daily business operations while developing communication and problem-solving skills."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Amazon Sales Analytics for Product Profitability Optimization",
+      "technologies": [
+        "Python",
+        "Pandas",
+        "Power BI",
+        "Data Analysis",
+        "Data Cleaning"
+      ],
+      "description": "Developed data-driven analytics for an Amazon seller to optimize product profitability by analyzing sales performance across multiple dimensions and addressing key e-commerce challenges."
+    },
+    {
+      "title": "Tunisian Stock Market Analysis",
+      "technologies": [
+        "R",
+        "PCA",
+        "Regression Modeling",
+        "FactoMineR"
+      ],
+      "description": "Collected and consolidated data from multiple spreadsheets to conduct a multivariate statistical analysis of companies listed on the Tunis Stock Exchange. Applied Principal Component Analysis (PCA) and Linear Regression to identify underlying market factors and predict price movements based on trading volume and volatility."
+    },
+    {
+      "title": "CarthageConnect (Influencer Analytics Platform)",
+      "technologies": [
+        "Python",
+        "Flask",
+        "PostgreSQL",
+        "React"
+      ],
+      "description": "Developed a RESTful API-driven platform featuring a custom Trust Score Engine to evaluate influencer engagement authenticity and professionalize local marketing."
+    },
+    {
+      "title": "TBS Course Management API",
+      "technologies": [
+        "Python",
+        "Flask",
+        "JSON",
+        "Docker",
+        "Swagger"
+      ],
+      "description": "Designed and documented a RESTful API to streamline the management and retrieval of Tunis Business School program data and academic course information."
+    },
+    {
+      "title": "SOTUVER Financial Ratio Analysis",
+      "technologies": [
+        "Financial Statement Analysis",
+        "Financial Ratio Analysis",
+        "Trend Forecasting"
+      ],
+      "description": "Conducted a comprehensive financial ratio analysis of SOTUVER for the 2022–2024 period to evaluate liquidity, operational efficiency, and leverage trends. Used official CMF annual reports to assess the company's ability to meet short-term obligations and manage its capital structure under varying market conditions."
+    },
+    {
+      "title": "TBS Chatbot (RAG Platform)",
+      "technologies": [
+        "Python",
+        "Flask",
+        "PostgreSQL",
+        "FAISS",
+        "LLM"
+      ],
+      "description": [
+        "Developed an intelligent platform based on Retrieval-Augmented Generation (RAG) architecture.",
+        "Extracted, structured, and processed data from multiple sources.",
+        "Implemented a semantic search system to retrieve relevant information.",
+        "Generated context-aware responses grounded in retrieved data."
+      ]
+    },
+    {
+      "title": "SmartHome Management System",
+      "technologies": [
+        "Java",
+        "JavaFX",
+        "OOP",
+        "IoT"
+      ],
+      "description": [
+        "Designed and developed a desktop application using Object-Oriented Programming (OOP).",
+        "Built a customized user interface using JavaFX.",
+        "Simulated and controlled a smart home environment with integrated sensors.",
+        "Implemented device management and control logic for connected IoT devices."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Tunis Business School (TBS)",
+      "degree": "Bachelor of Science in Business Administration",
+      "major": "Information Technology",
+      "minor": "Business Analytics",
+      "start_date": "2023",
+      "end_date": "2027",
+      "status": "In Progress"
+    }
+  ],
+  "skills": {
+    "programming_languages": [
+      "Python",
+      "R",
+      "JavaScript",
+      "SQL"
+    ],
+    "frameworks_and_libraries": [
+      "Flask",
+      "React",
+      "React Native",
+      "Pandas",
+      "FactoMineR"
+    ],
+    "databases": [
+      "MySQL",
+      "PostgreSQL"
+    ],
+    "data_analysis_and_visualization": [
+      "Power BI",
+      "Microsoft Excel",
+      "Data Cleaning",
+      "Exploratory Data Analysis",
+      "Principal Component Analysis (PCA)",
+      "Linear Regression",
+      "Financial Ratio Analysis"
+    ],
+    "tools_and_technologies": [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Swagger",
+      "REST APIs",
+      "JSON"
+    ],
+    "business_and_professional_skills": [
+      "Problem Solving",
+      "Analytical Thinking",
+      "Teamwork",
+      "Communication",
+      "Customer Service"
+    ],
+    "languages": [
+      {
+        "name": "Arabic",
+        "proficiency": "Native"
+      },
+      {
+        "name": "English",
+        "proficiency": "Fluent"
+      },
+      {
+        "name": "French",
+        "proficiency": "Fluent"
+      },
+      {
+        "name": "Spanish",
+        "proficiency": "Beginner"
+      }
+    ]
+  },
+  "contact": {
+    "email": "oussamazmitri123@gmail.com",
+    "phone": "+216 25918658",
+    "university_email": "zmitri.oussama@tbs.u-tunis.tn",
+    "linkedin": "https://www.linkedin.com/in/zmitri-oussama/",
+    "github": "https://github.com/oussamazmitri",
+    "facebook": null,
+    "instagram": null
+  },
+  "volunteer": {
+    "club": "Google Developer Groups Bizerte",
+    "tasks": [
+      "Participated in organizing events.",
+      "Participated in hackathons and technical workshops."
+    ],
+    "description": "Active member of a collaborative tech community where developers and Google technology experts share knowledge, exchange skills, and explore new technologies."
+  },
+  "translations": {
+    "site": {
+      "title": "Oussama Zmitri | Backend & AI Developer",
+      "description": "Personal portfolio of Oussama Zmitri, fourth-year IT student at Tunis Business School specializing in backend engineering, artificial intelligence, and statistical data engineering. Candidate for PFE Internship 2027.",
+      "pfe_candidate": "PFE 2027 Candidate",
+      "backend_ai": "Backend & AI",
+      "seeking_internship": "Looking for a PFE Internship!",
+      "avatar_role": "AI & Backend"
+    },
+    "nav": {
+      "brand": "Oussama Zmitri",
+      "portfolio": "Portfolio",
+      "side_quests": "Side Quests",
+      "writing": "Writing",
+      "menu_aria": "Main Navigation",
+      "mobile_menu_aria": "Open navigation menu",
+      "template_switcher_aria": "Portfolio Presentation Template",
+      "section_about": "Background",
+      "section_skills": "Skills",
+      "section_projects": "Projects",
+      "section_experience": "Experience",
+      "section_education": "Education",
+      "section_contact": "Contact",
+      "matrix_section_about": "IDENTITY_DATA",
+      "matrix_section_skills": "NEURAL_SKILLS",
+      "matrix_section_projects": "EXECUTABLE_PROJECTS",
+      "matrix_section_experience": "TIMELINE_LOGS",
+      "matrix_section_education": "ACADEMIC_METRICS",
+      "matrix_section_contact": "COMMS_GRID"
+    },
+    "templates": {
+      "normal": "Normal",
+      "devmode": "Dev Mode",
+      "matrix": "Matrix"
+    },
+    "theme": {
+      "toggle_aria": "Toggle light and dark mode",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": {
+      "switcher_aria": "Switch language",
+      "current_language": "English",
+      "en": "English",
+      "fr": "Français",
+      "en_short": "EN",
+      "fr_short": "FR"
+    },
+    "hero": {
+      "explore_work": "Explore Work",
+      "download_cv": "Download CV",
+      "contact_me": "Contact Me",
+      "cv_english": "English CV",
+      "cv_french": "French CV",
+      "pdf_tag": "PDF",
+      "annotation": "Looking for a PFE Internship!"
+    },
+    "about": {
+      "label": "01 // Background",
+      "title": "Engineering Solid Systems with Data & AI",
+      "desc": "Bridging IT backend engineering with statistical business analytics at Tunis Business School.",
+      "narrative_2": "With an educational foundation at Tunis Business School combining Information Technology with Business Analytics, I focus on building reliable software platforms, designing clean RESTful APIs, and translating complex data into actionable operational insights.",
+      "highlight_1_title": "Backend Architecture",
+      "highlight_1_desc": "Designing RESTful APIs with Python, Flask, Docker, and SQL databases, focused on clean contracts, maintainability, and reliability.",
+      "highlight_2_title": "Data & Statistical Modeling",
+      "highlight_2_desc": "Multivariate statistical analysis, PCA, regression modeling, and financial analytics with R, FactoMineR, and Pandas.",
+      "highlight_3_title": "Business Analytics",
+      "highlight_3_desc": "Integrating analytical thinking, financial statement ratios, and profit optimization into software architecture."
+    },
+    "skills": {
+      "label": "02 // Technical Capabilities",
+      "title": "Skills & Technologies",
+      "desc": "Technologies, analytical methods, and engineering tools applied across development and data projects.",
+      "filters": {
+        "all": "All Skills",
+        "languages": "Programming Languages",
+        "frameworks": "Frameworks & Libraries",
+        "data": "Data & AI",
+        "tools": "Databases & Tools",
+        "spoken": "Spoken Languages"
+      },
+      "groups": {
+        "programming_languages": "Programming Languages",
+        "frameworks_and_libraries": "Frameworks & Libraries",
+        "databases": "Databases",
+        "data_analysis_and_visualization": "Data & Statistical Analysis",
+        "tools_and_technologies": "Tools & DevOps",
+        "business_and_professional_skills": "Business & Professional",
+        "spoken_languages": "Spoken Languages"
+      }
+    },
+    "projects": {
+      "label": "03 // Featured Work",
+      "title": "Projects & Implementations",
+      "desc": "A showcase of backend API services, multivariate statistical research, and enterprise analytics projects.",
+      "project_prefix": "PROJECT // 0",
+      "status_completed": "Completed",
+      "view_project": "View Project ↗"
+    },
+    "experience": {
+      "label": "04 // Career Path",
+      "title": "Professional Experience",
+      "desc": "Practical software engineering internships, operational systems development, and team contributions."
+    },
+    "education": {
+      "label": "05 // Academic & Community",
+      "title": "Education & Volunteering",
+      "major_label": "Major:",
+      "minor_label": "Minor:",
+      "period_label": "Period:",
+      "status_in_progress": "In Progress",
+      "institution_tag": "Tunis Business School",
+      "volunteer_role": "Active Community Member",
+      "volunteer_badge": "Community",
+      "volunteer_club_tag": "GDG Bizerte"
+    },
+    "contact": {
+      "label": "06 // Get In Touch",
+      "title": "Let’s Connect",
+      "desc": "Actively seeking a graduation internship (PFE) starting 2027 in Backend Engineering, AI, or Data Engineering.",
+      "email": "Email",
+      "university_email": "University Email",
+      "phone": "Phone",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    },
+    "side_quests": {
+      "label": "Field Notes & Explorations",
+      "title": "Side Quests",
+      "desc": "A personal, exploratory laboratory for everyday observations, hardware tests, learning experiments, and side pursuits outside my core portfolio.",
+      "empty_title": "The Quest Log is Currently Quiet",
+      "empty_text": "I am currently focused on academic projects at TBS and seeking my 2027 PFE graduation internship. New personal experiments, mini-tools, and technical field notes will be chronicled here soon.",
+      "status": "● Status: In Incubation",
+      "log_count": "● Log Count: 0 Entries",
+      "return_home": "← Return to Main Portfolio"
+    },
+    "writing": {
+      "label": "Essays & Perspectives",
+      "title": "Writing",
+      "desc": "Technical explanations, engineering breakdowns, statistical case notes, and reflections on building software and AI systems.",
+      "empty_title": "Drafts in Incubation",
+      "empty_text": "Upcoming essays covering multivariate analysis for market forecasting, REST API architectures with Flask, and practical data engineering lessons are currently in preparation.",
+      "status": "● Status: Drafting Articles",
+      "published_count": "● Published: 0 Items",
+      "return_home": "← Return to Main Portfolio"
+    },
+    "devmode": {
+      "download_cv": "Download CV",
+      "explorer_title": "EXPLORER: PORTFOLIO",
+      "explorer_src": "src/",
+      "breadcrumb_root": "portfolio",
+      "breadcrumb_src": "src",
+      "python_runtime": "Python 3.13.9 64-bit",
+      "git_branch": "🌿 git:(main*)",
+      "encoding": "UTF-8",
+      "spaces": "Spaces: 4",
+      "pfe_status": "PFE: Searching Active",
+      "notice_pfe": "LOOKING FOR A PFE INTERNSHIP (2027)",
+      "status_pfe": "Looking for a PFE Internship!",
+      "init_message": "Initialized profile for",
+      "interactive_action": "Interactive action trigger",
+      "run_en": "▶ Run: download_cv('english')",
+      "run_fr": "▶ Run: download_cv('french')",
+      "module_skills": "Technical stack and statistical proficiencies",
+      "module_projects": "Backend and analytics production deliverables",
+      "module_experience": "Internships and professional trajectory",
+      "module_education": "Academic milestones and degrees",
+      "module_contact": "Direct communication channels",
+      "module_side_quests": "Side quests and explorations",
+      "module_writing": "Writing and publications"
+    },
+    "matrix": {
+      "prompt_command": "./init_portfolio.sh --candidate=\"OZ\"",
+      "rain_fx": "Rain FX:",
+      "rain_online": "ONLINE",
+      "rain_paused": "PAUSED",
+      "status_label": "OPERATIONAL STATUS",
+      "status_value": "ONLINE // ACTIVE",
+      "directive_label": "PRIMARY DIRECTIVE",
+      "directive_value": "PFE INTERNSHIP 2027",
+      "base_label": "ACADEMIC BASE",
+      "base_value": "TBS (TUNIS)",
+      "spec_label": "SPECIALIZATION",
+      "spec_value": "BACKEND + AI",
+      "subject_id": "[SYS_ID: 0x9AF2]",
+      "identified_subject": "IDENTIFIED SUBJECT:",
+      "access_projects": "ACCESS DEPLOYED PROJECTS",
+      "download_dossier_en": "DOWNLOAD DOSSIER (CV EN)",
+      "download_dossier_fr": "DOSSIER (CV FR)",
+      "sec_ssl": "SECURE_SSL",
+      "avatar_role": "SYSTEM ARCHITECT // BACKEND & AI",
+      "cat_languages": "LANGUAGES & RUNTIMES",
+      "cat_frameworks": "FRAMEWORKS & LIBS",
+      "cat_databases": "DATABASES",
+      "cat_data": "DATA & STATISTICAL SYSTEMS",
+      "cat_core": "CORE COMPETENCIES",
+      "cat_comm": "COMMUNICATION PROTOCOLS",
+      "timeline_header": "TRANSACTION LOG // EXPERIENCE",
+      "node_prefix": "NODE // 0",
+      "node_suffix": "[ENTERPRISE_SYSTEM]",
+      "command_credentials": "sys.execute --command='get_credentials'",
+      "ping_recruitment": "ping --destination='recruitment@domain'",
+      "academic_log": "TRANSACTION LOG // ACADEMIC",
+      "telemetry": "DIRECT TELEMETRY CHANNELS"
+    },
+    "footer": {
+      "brand": "Oussama Zmitri",
+      "bio": "Fourth-year IT student at Tunis Business School. Backend & AI developer seeking a 2027 graduation internship (PFE).",
+      "nav_heading": "Navigation",
+      "main_portfolio": "Main Portfolio",
+      "side_quests": "Side Quests",
+      "writing_archive": "Writing Archive",
+      "cv_heading": "Curriculum Vitae",
+      "download_cv_en": "Download CV (English) ↗",
+      "download_cv_fr": "Download CV (French) ↗",
+      "copyright": "All rights reserved.",
+      "mode": "Mode:",
+      "theme": "Theme:"
+    },
+    "routes": {
+      "home_title": "Oussama Zmitri | Backend & AI Developer",
+      "side_quests_title": "Side Quests & Experiments | Oussama Zmitri",
+      "writing_title": "Writing & Notes | Oussama Zmitri"
+    },
+    "messages": {
+      "loading": "Loading Portfolio Profile...",
+      "error_title": "Backend Connection Notice",
+      "retry": "Retry Connection",
+      "language_changed": "Language switched to English",
+      "fetch_error": "Could not load portfolio data. The server might be offline or starting up."
+    },
+    "forms": {
+      "name_label": "Your Name",
+      "name_placeholder": "e.g. Marie Curie",
+      "email_label": "Email Address",
+      "email_placeholder": "name@example.com",
+      "message_label": "Message",
+      "message_placeholder": "Write your message here...",
+      "send_button": "Send Message",
+      "success_message": "Message sent successfully! Thank you for reaching out.",
+      "validation_required": "This field is required.",
+      "validation_email": "Please enter a valid email address.",
+      "validation_min_length": "Message must be at least 10 characters long."
+    }
+  }
+}

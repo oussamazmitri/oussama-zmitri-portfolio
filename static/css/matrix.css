@@ -81,6 +81,7 @@
     position: relative;
     box-shadow: var(--shadow);
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    scroll-margin-top: 8rem;
   }
 
   .cyber-panel:hover {
@@ -167,6 +168,16 @@
     overflow: hidden;
   }
 
+  .matrix-frame-hex img,
+  .matrix-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 1;
+    filter: brightness(0.95) contrast(1.1);
+  }
+
   .matrix-frame-hex::after {
     content: '';
     position: absolute;
@@ -174,6 +185,8 @@
     border: 1px dashed var(--accent-primary);
     border-radius: 50%;
     animation: rotateFrame 24s linear infinite;
+    z-index: 2;
+    pointer-events: none;
   }
 
   @keyframes rotateFrame {
@@ -192,6 +205,85 @@
     letter-spacing: 0.05em;
     box-shadow: 0 0 16px rgba(0, 255, 65, 0.4);
     z-index: 10;
+  }
+
+  /* Matrix Sector Navigation Command Deck */
+  .matrix-section-nav {
+    margin: 1.5rem 0 2rem;
+    position: sticky;
+    top: 4.25rem;
+    z-index: 35;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(5, 8, 5, 0.88);
+    padding: 0.85rem 0;
+    border-top: 1px dashed var(--border-card);
+    border-bottom: 1px dashed var(--border-card);
+  }
+
+  .matrix-nav-deck {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .matrix-deck-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-fast);
+  }
+
+  .matrix-deck-btn .deck-idx {
+    color: var(--accent-primary);
+  }
+
+  .matrix-deck-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .matrix-deck-btn.active {
+    background-color: rgba(0, 255, 65, 0.12);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 0 16px rgba(0, 255, 65, 0.35);
+  }
+
+  /* Matrix Protocol 01 Identity Boxes */
+  .matrix-identity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .matrix-identity-card {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border-card);
+    border-left: 3px solid var(--accent-primary);
+    padding: 1.35rem;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .matrix-identity-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    border-color: var(--accent-primary);
   }
 
   /* Matrix Skills */

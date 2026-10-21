@@ -85,11 +85,11 @@ function renderMatrixHome(data, state) {
             <a href="#matrix-projects" class="btn btn-primary">
               ${t('matrix.access_projects', 'ACCESS DEPLOYED PROJECTS')}
             </a>
-            <a href="/apis/get_cv?lang=en&download=1" target="_blank" class="btn btn-secondary">
-              ${t('matrix.download_dossier_en', 'DOWNLOAD DOSSIER (CV EN)')}
+            <a href="/apis/get_cv?lang=en" target="_blank" rel="noopener" class="btn btn-secondary">
+              ${t('matrix.see_dossier_en', t('matrix.download_dossier_en', 'SEE DOSSIER (CV EN)'))}
             </a>
-            <a href="/apis/get_cv?lang=fr&download=1" target="_blank" class="btn btn-secondary">
-              ${t('matrix.download_dossier_fr', 'DOSSIER (CV FR)')}
+            <a href="/apis/get_cv?lang=fr" target="_blank" rel="noopener" class="btn btn-secondary">
+              ${t('matrix.see_dossier_fr', t('matrix.download_dossier_fr', 'DOSSIER (CV FR)'))}
             </a>
           </div>
         </div>
@@ -306,7 +306,10 @@ function renderMatrixHome(data, state) {
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
           ${(education || []).map(edu => `
             <div style="background-color: var(--bg-alt); padding: 1.5rem; border: 1px solid var(--border-card);">
-              <span class="badge" style="border: 1px solid var(--accent-primary);">${escapeHtml(edu.status || t('education.status_in_progress', 'ACTIVE'))}</span>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem;">
+                <img src="/static/images/tbs_logo.png" alt="Tunis Business School Logo" class="edu-card-logo">
+                <span class="badge" style="border: 1px solid var(--accent-primary);">${escapeHtml(edu.status || t('education.status_in_progress', 'ACTIVE'))}</span>
+              </div>
               <h4 style="color: var(--text-heading); font-size: 1.15rem; margin-top: 0.5rem;">${escapeHtml(edu.institution)}</h4>
               <p style="color: var(--accent-primary); font-size: 0.95rem;">${escapeHtml(edu.degree)}</p>
               <div style="margin-top: 0.75rem; font-size: 0.88rem; color: var(--text-secondary);">
@@ -319,7 +322,10 @@ function renderMatrixHome(data, state) {
 
           ${volunteer ? `
             <div style="background-color: var(--bg-alt); padding: 1.5rem; border: 1px solid var(--border-card);">
-              <span class="badge" style="border: 1px solid var(--accent-primary);">${t('education.volunteer_badge', 'COMMUNITY')}</span>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem;">
+                <img src="/static/images/gdg.png" alt="GDG Bizerte Logo" class="edu-card-logo">
+                <span class="badge" style="border: 1px solid var(--accent-primary);">${t('education.volunteer_badge', 'COMMUNITY')}</span>
+              </div>
               <h4 style="color: var(--text-heading); font-size: 1.15rem; margin-top: 0.5rem;">${escapeHtml(volunteer.club)}</h4>
               <p style="color: var(--text-body); font-size: 0.9rem; margin-top: 0.5rem;">${escapeHtml(volunteer.description)}</p>
               <ul style="list-style: none; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">

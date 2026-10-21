@@ -7,8 +7,33 @@
 import { t, getLanguage } from '../i18n.js';
 
 let activeFileId = 'profile.py';
+let currentDevModeContainer = null;
+let currentDevModeData = null;
+
+export function switchDevModeFile(fileId) {
+  activeFileId = fileId;
+  if (!currentDevModeContainer || !currentDevModeData) return;
+
+  const tabs = currentDevModeContainer.querySelectorAll('.editor-tab');
+  const treeItems = currentDevModeContainer.querySelectorAll('.file-item');
+  tabs.forEach(tEl => tEl.classList.toggle('active', tEl.dataset.file === fileId));
+  treeItems.forEach(item => item.classList.toggle('active', item.dataset.file === fileId));
+
+  const titleEl = currentDevModeContainer.querySelector('.ide-window-title span');
+  if (titleEl) {
+    titleEl.textContent = `oussama-portfolio/src/${fileId} — Python 3.13.9`;
+  }
+  const breadcrumbEl = currentDevModeContainer.querySelector('.editor-breadcrumb span:last-child');
+  if (breadcrumbEl) {
+    breadcrumbEl.textContent = fileId;
+  }
+
+  renderActiveCodeBuffer(currentDevModeContainer, currentDevModeData);
+}
 
 export function renderDevModeView(container, data, currentPath) {
+  currentDevModeContainer = container;
+  currentDevModeData = data;
   // Sync default file based on route
   if (currentPath === '/side-quests') {
     activeFileId = 'side_quests.py';
@@ -206,11 +231,11 @@ function generateCodeForFile(fileId, data) {
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">def</span> <span class="syn-def">get_bio</span>(self) -> <span class="syn-cls">str</span>:</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">return</span> <span class="syn-str">"""${escapeHtml(resume)}"""</span></div>
 <div class="code-line"></div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">def</span> <span class="syn-def">download_curriculum_vitae</span>(self, language: <span class="syn-cls">str</span> = <span class="syn-str">"english"</span>):</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">def</span> <span class="syn-def">see_curriculum_vitae</span>(self, language: <span class="syn-cls">str</span> = <span class="syn-str">"english"</span>):</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-com"># ${t('devmode.interactive_action', 'Interactive action trigger')}</span></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-kw">return</span> {</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"en"</span>: <a href="/apis/get_cv?lang=en&download=1" class="code-action-tag" target="_blank">${t('devmode.run_en', "▶ Run: download_cv('english')")}</a>,</div>
-<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"fr"</span>: <a href="/apis/get_cv?lang=fr&download=1" class="code-action-tag" target="_blank">${t('devmode.run_fr', "▶ Run: download_cv('french')")}</a></div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"en"</span>: <a href="/apis/get_cv?lang=en" class="code-action-tag" target="_blank" rel="noopener">${t('devmode.see_cv_en', t('devmode.run_en', "▶ Run: see_cv('english')"))}</a>,</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"fr"</span>: <a href="/apis/get_cv?lang=fr" class="code-action-tag" target="_blank" rel="noopener">${t('devmode.see_cv_fr', t('devmode.run_fr', "▶ Run: see_cv('french')"))}</a></div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</div>
 <div class="code-line"></div>
 <div class="code-line">profile = <span class="syn-cls">CandidateProfile</span>()</div>
@@ -290,6 +315,7 @@ ${(experiences || []).map(exp => `
 ${(education || []).map(edu => `
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;{</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"institution"</span>: <span class="syn-str">"${escapeHtml(edu.institution)}"</span>,</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"logo"</span>: <span class="syn-str">"static/images/tbs_logo.png"</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"degree"</span>: <span class="syn-str">"${escapeHtml(edu.degree)}"</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"major"</span>: <span class="syn-str">"${escapeHtml(edu.major)}"</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"minor"</span>: <span class="syn-str">"${escapeHtml(edu.minor || 'None')}"</span>,</div>
@@ -301,6 +327,7 @@ ${(education || []).map(edu => `
 <div class="code-line"></div>
 <div class="code-line">VOLUNTEER = {</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"club"</span>: <span class="syn-str">"${escapeHtml(volunteer ? volunteer.club : '')}"</span>,</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"logo"</span>: <span class="syn-str">"static/images/gdg.png"</span>,</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"tasks"</span>: ${JSON.stringify(volunteer ? volunteer.tasks : [])},</div>
 <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-str">"description"</span>: <span class="syn-str">"${escapeHtml(volunteer ? volunteer.description : '')}"</span></div>
 <div class="code-line">}</div>
@@ -394,7 +421,7 @@ function setupDevModeInteractions(container, data, currentPath) {
   if (runCvBtn) {
     runCvBtn.addEventListener('click', () => {
       const activeLang = getLanguage();
-      window.open(`/apis/get_cv?lang=${activeLang}&download=1`, '_blank');
+      window.open(`/apis/get_cv?lang=${activeLang}`, '_blank');
     });
   }
 }

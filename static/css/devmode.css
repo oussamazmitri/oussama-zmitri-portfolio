@@ -308,11 +308,110 @@
 /* Dev mode responsive */
 @media (max-width: 768px) {
   [data-template="devmode"] {
+    .ide-window {
+      margin: 1rem auto 2.5rem;
+      min-height: unset;
+    }
+
     .ide-sidebar {
       display: none;
     }
+
+    .ide-body {
+      min-height: 480px;
+    }
+
     .editor-tabs-bar {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0.35rem 0.5rem;
+      gap: 0.35rem;
+      background-color: var(--ide-sidebar);
+    }
+
+    .editor-tabs-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .editor-tab {
+      flex-shrink: 0;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-card);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .editor-tab.active {
+      background-color: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      border-color: var(--btn-primary-bg);
+    }
+
+    .editor-breadcrumb {
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+
+    .ide-statusbar {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.45rem 0.75rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  [data-template="devmode"] {
+    .ide-titlebar {
+      padding: 0.4rem 0.75rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .ide-window-title {
+      max-width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ide-action-btn span {
+      display: none;
+    }
+
+    .ide-action-btn {
+      padding: 0.25rem 0.45rem;
+    }
+
+    .editor-workspace {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      padding: 0.75rem 0;
+    }
+
+    .gutter-line-numbers {
+      width: 2.25rem;
+      padding: 0 0.35rem;
+      font-size: 0.75rem;
+    }
+
+    .code-viewport {
+      padding: 0 0.75rem;
+    }
+
+    .statusbar-right .status-item:not(:last-child) {
+      display: none;
+    }
+
+    .statusbar-left, .statusbar-right {
+      gap: 0.75rem;
     }
   }
 }

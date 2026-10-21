@@ -1,6 +1,6 @@
 {
   "name": "Oussama zmitri",
-  "job_description": "Étudiant en informatique | Développeur Backend & IA",
+  "job_description": "Étudiant en IT | Développeur Backend & IA",
   "resume": "Étudiant en quatrième année d’informatique à Tunis Business School, avec des compétences en administration et maintenance des infrastructures informatiques, développement logiciel et analyse de données. Expérience en support informatique et dépannage, développement d’API backend, applications web et mobiles, systèmes de recherche sémantique et analyse de données. Intéressé par le développement backend, l’intelligence artificielle et l’ingénierie des données, avec pour objectif de concevoir des solutions pratiques à des problématiques concrètes.",
   "experiences": [
     {
@@ -292,7 +292,8 @@
       "cv_english": "CV en anglais",
       "cv_french": "CV en français",
       "pdf_tag": "PDF",
-      "annotation": "À la recherche d'un stage PFE !"
+      "annotation": "À la recherche d'un stage PFE !",
+      "Experiences": "Expériences"
     },
     "about": {
       "label": "01 // Parcours",

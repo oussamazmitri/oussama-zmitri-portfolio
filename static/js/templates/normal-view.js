@@ -53,22 +53,25 @@ function renderNormalHome(data) {
 
                 <div class="cv-dropdown">
                   <button type="button" class="btn btn-secondary cv-trigger-btn" aria-haspopup="true" aria-expanded="false" id="hero-cv-dropdown">
-                    ${t('hero.download_cv', 'Download CV')}
+                    ${t('hero.see_cv', t('hero.download_cv', 'See CV'))}
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                   </button>
                   <div class="cv-menu" role="menu">
-                    <a href="/apis/get_cv?lang=en&download=1" class="cv-menu-item" target="_blank" rel="noopener">
+                    <a href="/apis/get_cv?lang=en" class="cv-menu-item" target="_blank" rel="noopener">
                       <span>${t('hero.cv_english', 'English CV')}</span>
                       <small class="tag">${t('hero.pdf_tag', 'PDF')}</small>
                     </a>
-                    <a href="/apis/get_cv?lang=fr&download=1" class="cv-menu-item" target="_blank" rel="noopener">
+                    <a href="/apis/get_cv?lang=fr" class="cv-menu-item" target="_blank" rel="noopener">
                       <span>${t('hero.cv_french', 'French CV')}</span>
                       <small class="tag">${t('hero.pdf_tag', 'PDF')}</small>
                     </a>
                   </div>
                 </div>
+                <a href="#experience" class="btn btn-secondary">${t('hero.Experiences', 'Experiences')}</a>
 
                 <a href="#contact" class="btn btn-secondary">${t('hero.contact_me', 'Contact Me')}</a>
+                
+
               </div>
             </div>
 
@@ -89,7 +92,7 @@ function renderNormalHome(data) {
                   <path class="marker-stroke marker-circle" d="M 180 33 C 261 33, 327 99, 327 180 C 327 261, 261 327, 180 327 C 99 327, 33 261, 33 180 C 33 99, 99 33, 178 33 C 235 33, 310 58, 322 118" />
                   <!-- Hand-drawn curved arrow pointing from badge to photo -->
                   <path class="marker-stroke marker-arrow" d="M 330 70 C 320 88, 305 102, 285 110" />
-                  <path class="marker-stroke marker-arrow" d="M 278 97 L 285 110 L 298 103" />
+                  <path class="marker-stroke marker-arrow" d="M 299 112 L 285 110 L 294 99" />
                 </svg>
 
                 <!-- Handwritten Scribbled Annotation Badge -->
@@ -134,8 +137,8 @@ function renderNormalHome(data) {
         </div>
       </nav>
 
-      <!-- 2. ABOUT SECTION -->
-      <section class="section-block alt-bg" id="about">
+      <!-- 2. ABOUT / SUMMARY SECTION -->
+      <section class="section-block alt-bg summary-section" id="about">
         <div class="container">
           <div class="section-header">
             <span class="section-label">${t('about.label', '01 // Background')}</span>
@@ -145,7 +148,6 @@ function renderNormalHome(data) {
 
           <div class="about-content-wrap">
             <div class="about-narrative">
-              <p class="lead-text">${escapeHtml(resume)}</p>
               <p>${t('about.narrative_2', 'With an educational foundation at Tunis Business School combining Information Technology with Business Analytics, I focus on building reliable software platforms, designing clean RESTful APIs, and translating complex data into actionable operational insights.')}</p>
             </div>
 
@@ -414,9 +416,12 @@ function renderNormalHome(data) {
               <div class="info-card">
                 <div>
                   <div class="info-card-header">
-                    <div>
-                      <h3 class="info-card-title">${escapeHtml(edu.institution)}</h3>
-                      <h4 class="info-card-sub">${escapeHtml(edu.degree)}</h4>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                      <img src="/static/images/tbs_logo.png" alt="Tunis Business School Logo" class="edu-card-logo">
+                      <div>
+                        <h3 class="info-card-title">${escapeHtml(edu.institution)}</h3>
+                        <h4 class="info-card-sub">${escapeHtml(edu.degree)}</h4>
+                      </div>
                     </div>
                     <span class="badge">${escapeHtml(edu.status || t('education.status_in_progress', 'In Progress'))}</span>
                   </div>
@@ -428,7 +433,7 @@ function renderNormalHome(data) {
                   </div>
                 </div>
 
-                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; display: flex; align-items: center; justify-content: space-between;">
                   <span class="tag">${t('education.institution_tag', 'Tunis Business School')}</span>
                 </div>
               </div>
@@ -439,9 +444,12 @@ function renderNormalHome(data) {
               <div class="info-card">
                 <div>
                   <div class="info-card-header">
-                    <div>
-                      <h3 class="info-card-title">${escapeHtml(volunteer.club)}</h3>
-                      <h4 class="info-card-sub">${t('education.volunteer_role', 'Active Community Member')}</h4>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                      <img src="/static/images/gdg.png" alt="Google Developer Groups Logo" class="edu-card-logo">
+                      <div>
+                        <h3 class="info-card-title">${escapeHtml(volunteer.club)}</h3>
+                        <h4 class="info-card-sub">${t('education.volunteer_role', 'Active Community Member')}</h4>
+                      </div>
                     </div>
                     <span class="badge">${t('education.volunteer_badge', 'Community')}</span>
                   </div>
@@ -454,7 +462,7 @@ function renderNormalHome(data) {
                   </div>
                 </div>
 
-                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; display: flex; align-items: center; justify-content: space-between;">
                   <span class="tag">${t('education.volunteer_club_tag', 'GDG Bizerte')}</span>
                 </div>
               </div>

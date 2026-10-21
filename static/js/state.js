@@ -5,6 +5,7 @@
  */
 
 const STORAGE_KEYS = {
+  THEME_PREFIX: 'portfolio_theme_',
   THEME: 'portfolio_theme',
   TEMPLATE: 'portfolio_template',
   MATRIX_RAIN: 'portfolio_matrix_rain',
@@ -13,8 +14,8 @@ const STORAGE_KEYS = {
 
 class PortfolioState {
   constructor() {
-    this.theme = this.getInitialTheme();
     this.template = this.getInitialTemplate();
+    this.theme = this.getThemeForTemplate(this.template);
     this.language = this.getInitialLanguage();
     this.matrixRain = localStorage.getItem(STORAGE_KEYS.MATRIX_RAIN) !== 'false';
     this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -24,24 +25,36 @@ class PortfolioState {
     // Apply initial attributes to DOM
     this.applyToDOM();
 
-    // Listen for system theme changes if user hasn't explicitly set one
+    // Listen for system theme changes if user hasn't explicitly set one for current template
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem(STORAGE_KEYS.THEME)) {
+      const savedForTemplate = localStorage.getItem(`${STORAGE_KEYS.THEME_PREFIX}${this.template}`);
+      if (!savedForTemplate && this.template === 'normal') {
         this.setTheme(e.matches ? 'dark' : 'light', false);
       }
     });
-  }
-
-  getInitialTheme() {
-    const saved = localStorage.getItem(STORAGE_KEYS.THEME);
-    if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
   getInitialTemplate() {
     const saved = localStorage.getItem(STORAGE_KEYS.TEMPLATE);
     if (['normal', 'devmode', 'matrix'].includes(saved)) return saved;
     return 'normal';
+  }
+
+  getThemeForTemplate(template) {
+    const savedForTemplate = localStorage.getItem(`${STORAGE_KEYS.THEME_PREFIX}${template}`);
+    if (savedForTemplate === 'light' || savedForTemplate === 'dark') {
+      return savedForTemplate;
+    }
+    // Dev mode and Matrix mode must default to dark even if user set light in normal mode
+    if (template === 'devmode' || template === 'matrix') {
+      return 'dark';
+    }
+    // Normal mode defaults to light (or saved global preference)
+    const savedGlobal = localStorage.getItem(STORAGE_KEYS.THEME);
+    if (savedGlobal === 'light' || savedGlobal === 'dark') {
+      return savedGlobal;
+    }
+    return 'light';
   }
 
   getInitialLanguage() {
@@ -55,7 +68,10 @@ class PortfolioState {
     if (this.theme === newTheme) return;
     this.theme = newTheme;
     if (persist) {
-      localStorage.setItem(STORAGE_KEYS.THEME, newTheme);
+      localStorage.setItem(`${STORAGE_KEYS.THEME_PREFIX}${this.template}`, newTheme);
+      if (this.template === 'normal') {
+        localStorage.setItem(STORAGE_KEYS.THEME, newTheme);
+      }
     }
     this.applyToDOM();
     this.notify();
@@ -67,16 +83,11 @@ class PortfolioState {
 
   setTemplate(newTemplate) {
     if (this.template === newTemplate) return;
-    const oldTemplate = this.template;
     this.template = newTemplate;
     localStorage.setItem(STORAGE_KEYS.TEMPLATE, newTemplate);
 
-    // Rule: Matrix defaults to Dark when first selected if user hasn't set an explicit preference
-    if (newTemplate === 'matrix' && oldTemplate !== 'matrix') {
-      if (!localStorage.getItem(STORAGE_KEYS.THEME)) {
-        this.setTheme('dark', false);
-      }
-    }
+    // Apply template's default/saved theme (devmode & matrix default to dark even if user set light in normal)
+    this.theme = this.getThemeForTemplate(newTemplate);
 
     this.applyToDOM();
     this.notify();

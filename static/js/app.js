@@ -9,7 +9,7 @@ import { router } from './router.js';
 import { initI18n, setLanguage, t } from './i18n.js';
 import { MatrixRainEngine } from './matrix-canvas.js';
 import { renderNormalView } from './templates/normal-view.js';
-import { renderDevModeView } from './templates/devmode-view.js';
+import { renderDevModeView, switchDevModeFile } from './templates/devmode-view.js';
 import { renderMatrixView } from './templates/matrix-view.js';
 
 class PortfolioApp {
@@ -95,12 +95,6 @@ class PortfolioApp {
 
     if (template === 'matrix') {
       return `
-        <li><a href="#matrix-about" class="nav-link nav-section-link" data-matrix-section="matrix-about">[01//ID]</a></li>
-        <li><a href="#matrix-skills" class="nav-link nav-section-link" data-matrix-section="matrix-skills">[02//SKILLS]</a></li>
-        <li><a href="#matrix-projects" class="nav-link nav-section-link" data-matrix-section="matrix-projects">[03//PROJECTS]</a></li>
-        <li><a href="#matrix-experience" class="nav-link nav-section-link" data-matrix-section="matrix-experience">[04//LOGS]</a></li>
-        <li><a href="#matrix-education" class="nav-link nav-section-link" data-matrix-section="matrix-education">[05//EDU]</a></li>
-        <li><a href="#matrix-contact" class="nav-link nav-section-link" data-matrix-section="matrix-contact">[06//COMMS]</a></li>
         <li class="nav-divider-vertical" aria-hidden="true"></li>
         <li><a href="/side-quests" data-link class="nav-link">${t('nav.side_quests', 'Side Quests')}</a></li>
         <li><a href="/writing" data-link class="nav-link">${t('nav.writing', 'Writing')}</a></li>
@@ -117,12 +111,6 @@ class PortfolioApp {
 
     // Default Normal template
     return `
-      <li><a href="#about" class="nav-link nav-section-link" data-normal-section="about">${t('nav.section_about', 'Background')}</a></li>
-      <li><a href="#skills" class="nav-link nav-section-link" data-normal-section="skills">${t('nav.section_skills', 'Skills')}</a></li>
-      <li><a href="#projects" class="nav-link nav-section-link" data-normal-section="projects">${t('nav.section_projects', 'Projects')}</a></li>
-      <li><a href="#experience" class="nav-link nav-section-link" data-normal-section="experience">${t('nav.section_experience', 'Experience')}</a></li>
-      <li><a href="#education" class="nav-link nav-section-link" data-normal-section="education">${t('nav.section_education', 'Education')}</a></li>
-      <li><a href="#contact" class="nav-link nav-section-link" data-normal-section="contact">${t('nav.section_contact', 'Contact')}</a></li>
       <li class="nav-divider-vertical" aria-hidden="true"></li>
       <li><a href="/side-quests" data-link class="nav-link">${t('nav.side_quests', 'Side Quests')}</a></li>
       <li><a href="/writing" data-link class="nav-link">${t('nav.writing', 'Writing')}</a></li>
@@ -133,9 +121,23 @@ class PortfolioApp {
     const isHome = router.getCurrentPath() === '/' || router.getCurrentPath() === '';
     const template = state.template;
 
-    if (!isHome || template === 'devmode') {
+    if (!isHome) {
       return `
         <li><a href="/" data-link class="nav-link mobile-nav-link">${t('nav.portfolio', 'Portfolio')}</a></li>
+        <li><a href="/side-quests" data-link class="nav-link mobile-nav-link ${router.getCurrentPath() === '/side-quests' ? 'active' : ''}">${t('nav.side_quests', 'Side Quests')}</a></li>
+        <li><a href="/writing" data-link class="nav-link mobile-nav-link ${router.getCurrentPath() === '/writing' ? 'active' : ''}">${t('nav.writing', 'Writing')}</a></li>
+      `;
+    }
+
+    if (template === 'devmode') {
+      return `
+        <li><a href="#profile.py" class="nav-link mobile-nav-link dev-file-link" data-dev-file="profile.py">🐍 01. ${t('nav.section_about', 'Background')} (profile.py)</a></li>
+        <li><a href="#skills.py" class="nav-link mobile-nav-link dev-file-link" data-dev-file="skills.py">🐍 02. ${t('nav.section_skills', 'Skills')} (skills.py)</a></li>
+        <li><a href="#projects.py" class="nav-link mobile-nav-link dev-file-link" data-dev-file="projects.py">🐍 03. ${t('nav.section_projects', 'Projects')} (projects.py)</a></li>
+        <li><a href="#experience.py" class="nav-link mobile-nav-link dev-file-link" data-dev-file="experience.py">🐍 04. ${t('nav.section_experience', 'Experience')} (experience.py)</a></li>
+        <li><a href="#education.py" class="nav-link mobile-nav-link dev-file-link" data-dev-file="education.py">🐍 05. ${t('nav.section_education', 'Education')} (education.py)</a></li>
+        <li><a href="#contact.py" class="nav-link mobile-nav-link dev-file-link" data-dev-file="contact.py">🐍 06. ${t('nav.section_contact', 'Contact')} (contact.py)</a></li>
+        <li style="border-top: 1px dashed var(--border-card); margin: 0.5rem 0;"></li>
         <li><a href="/side-quests" data-link class="nav-link mobile-nav-link">${t('nav.side_quests', 'Side Quests')}</a></li>
         <li><a href="/writing" data-link class="nav-link mobile-nav-link">${t('nav.writing', 'Writing')}</a></li>
       `;
@@ -183,7 +185,7 @@ class PortfolioApp {
         <div class="container-wide nav-inner">
           <!-- Brand -->
           <a href="/" data-link class="brand" aria-label="${t('nav.brand', 'Oussama Zmitri')} Portfolio">
-            <span class="brand-badge">OZ</span>
+            <img src="/static/images/me_in_suit.png" alt="Oussama Zmitri" class="brand-logo-img">
             <span>${t('nav.brand', 'Oussama Zmitri')}</span>
           </a>
 
@@ -204,8 +206,8 @@ class PortfolioApp {
               </button>
             </div>
 
-            <!-- Template Switcher -->
-            <div class="template-switcher" role="radiogroup" aria-label="${t('nav.template_switcher_aria', 'Portfolio Presentation Template')}">
+            <!-- Template Switcher (Desktop) -->
+            <div class="template-switcher desktop-template-switcher" role="radiogroup" aria-label="${t('nav.template_switcher_aria', 'Portfolio Presentation Template')}">
               <button type="button" class="template-btn ${state.template === 'normal' ? 'active' : ''}" data-template-btn="normal" aria-checked="${state.template === 'normal'}" role="radio">
                 <span>✦</span>
                 <span class="label">${t('templates.normal', 'Normal')}</span>
@@ -234,14 +236,50 @@ class PortfolioApp {
           </div>
         </div>
 
+        <!-- Mobile Header Template Bar: Visible directly in the header on mobile/phone view -->
+        <div class="mobile-nav-template-bar">
+          <div class="template-switcher mobile-header-template-switcher" role="radiogroup" aria-label="${t('nav.template_switcher_aria', 'Portfolio Presentation Template')}">
+            <button type="button" class="template-btn ${state.template === 'normal' ? 'active' : ''}" data-template-btn="normal" aria-checked="${state.template === 'normal'}" role="radio">
+              <span>✦</span>
+              <span class="label">${t('templates.normal', 'Normal')}</span>
+            </button>
+            <button type="button" class="template-btn ${state.template === 'devmode' ? 'active' : ''}" data-template-btn="devmode" aria-checked="${state.template === 'devmode'}" role="radio">
+              <span>&lt;/&gt;</span>
+              <span class="label">${t('templates.devmode', 'Dev Mode')}</span>
+            </button>
+            <button type="button" class="template-btn ${state.template === 'matrix' ? 'active' : ''}" data-template-btn="matrix" aria-checked="${state.template === 'matrix'}" role="radio">
+              <span>⚡</span>
+              <span class="label">${t('templates.matrix', 'Matrix')}</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Mobile Menu Drawer -->
         <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
           <ul class="mobile-nav-links">
             ${this.getMobileNavLinksHtml()}
           </ul>
 
+          <div class="mobile-template-wrap">
+            <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;">${t('nav.template_switcher_aria', 'Template')}</span>
+            <div class="template-switcher" role="radiogroup" aria-label="${t('nav.template_switcher_aria', 'Portfolio Presentation Template')}">
+              <button type="button" class="template-btn ${state.template === 'normal' ? 'active' : ''}" data-template-btn="normal" aria-checked="${state.template === 'normal'}" role="radio">
+                <span>✦</span>
+                <span class="label">${t('templates.normal', 'Normal')}</span>
+              </button>
+              <button type="button" class="template-btn ${state.template === 'devmode' ? 'active' : ''}" data-template-btn="devmode" aria-checked="${state.template === 'devmode'}" role="radio">
+                <span>&lt;/&gt;</span>
+                <span class="label">${t('templates.devmode', 'Dev Mode')}</span>
+              </button>
+              <button type="button" class="template-btn ${state.template === 'matrix' ? 'active' : ''}" data-template-btn="matrix" aria-checked="${state.template === 'matrix'}" role="radio">
+                <span>⚡</span>
+                <span class="label">${t('templates.matrix', 'Matrix')}</span>
+              </button>
+            </div>
+          </div>
+
           <div class="mobile-lang-wrap">
-            <span style="font-size: 0.85rem; color: var(--text-secondary);">${t('language.current_language', 'Language')}</span>
+            <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;">${t('language.current_language', 'Language')}</span>
             <div class="lang-switcher" role="radiogroup">
               <button type="button" class="lang-btn ${state.language === 'en' ? 'active' : ''}" data-lang-btn="en" role="radio">
                 <span>EN</span>
@@ -281,8 +319,8 @@ class PortfolioApp {
             <div class="footer-col">
               <h4>${t('footer.cv_heading', 'Curriculum Vitae')}</h4>
               <ul class="footer-links">
-                <li><a href="/apis/get_cv?lang=en&download=1" class="footer-link" target="_blank">${t('footer.download_cv_en', 'Download CV (English) ↗')}</a></li>
-                <li><a href="/apis/get_cv?lang=fr&download=1" class="footer-link" target="_blank">${t('footer.download_cv_fr', 'Download CV (French) ↗')}</a></li>
+                <li><a href="/apis/get_cv?lang=en" class="footer-link" target="_blank" rel="noopener">${t('footer.see_cv_en', t('footer.download_cv_en', 'See CV (English) ↗'))}</a></li>
+                <li><a href="/apis/get_cv?lang=fr" class="footer-link" target="_blank" rel="noopener">${t('footer.see_cv_fr', t('footer.download_cv_fr', 'See CV (French) ↗'))}</a></li>
               </ul>
             </div>
           </div>
@@ -301,6 +339,13 @@ class PortfolioApp {
           </div>
         </div>
       </footer>
+
+      <!-- Floating Back to Top Button -->
+      <button type="button" class="back-to-top-btn" id="back-to-top-btn" aria-label="${t('site.back_to_top', 'Back to top')}" title="${t('site.back_to_top', 'Back to top')}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+      </button>
 
       <!-- Toast Container -->
       <div class="toast-container" id="toast-container"></div>
@@ -398,6 +443,7 @@ class PortfolioApp {
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const targetLang = btn.dataset.langBtn;
+        this.closeMobileMenu();
         this.changeLanguage(targetLang);
       });
     });
@@ -407,6 +453,7 @@ class PortfolioApp {
     templateButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const targetTemplate = btn.dataset.templateBtn;
+        this.closeMobileMenu();
         state.setTemplate(targetTemplate);
       });
     });
@@ -429,6 +476,29 @@ class PortfolioApp {
       });
     }
 
+    // Floating Back to Top Button Handler
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    if (backToTopBtn) {
+      let scrollTicking = false;
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(() => {
+            if (window.scrollY > 300) {
+              backToTopBtn.classList.add('visible');
+            } else {
+              backToTopBtn.classList.remove('visible');
+            }
+            scrollTicking = false;
+          });
+          scrollTicking = true;
+        }
+      }, { passive: true });
+
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     // Attach Section Smooth Scroll Handlers
     this.setupSectionLinkHandlers();
   }
@@ -448,6 +518,24 @@ class PortfolioApp {
             const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
             window.scrollTo({ top: targetPos, behavior: 'smooth' });
             history.pushState(null, '', href);
+          }
+        }
+      };
+    });
+
+    document.querySelectorAll('.dev-file-link').forEach(link => {
+      link.onclick = (e) => {
+        e.preventDefault();
+        this.closeMobileMenu();
+        const fileId = link.dataset.devFile;
+        if (fileId) {
+          switchDevModeFile(fileId);
+          const ideWindow = document.querySelector('.ide-window');
+          if (ideWindow) {
+            const navEl = document.querySelector('.site-nav');
+            const offset = (navEl ? navEl.offsetHeight : 70) + 16;
+            const targetPos = ideWindow.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: targetPos, behavior: 'smooth' });
           }
         }
       };

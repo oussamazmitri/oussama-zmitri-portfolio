@@ -5,7 +5,8 @@
     "pfe_candidate": "Candidat PFE 2027",
     "backend_ai": "Backend & IA",
     "seeking_internship": "À la recherche d'un stage PFE !",
-    "avatar_role": "IA & Backend"
+    "avatar_role": "IA & Backend",
+    "back_to_top": "Retour en haut"
   },
   "nav": {
     "brand": "Oussama Zmitri",
@@ -49,6 +50,7 @@
   "hero": {
     "explore_work": "Explorer mes projets",
     "download_cv": "Télécharger le CV",
+    "see_cv": "Voir le CV",
     "contact_me": "Me contacter",
     "cv_english": "CV en anglais",
     "cv_french": "CV en français",
@@ -161,6 +163,8 @@
     "interactive_action": "Déclencheur d'action interactive",
     "run_en": "▶ Exécuter : download_cv('english')",
     "run_fr": "▶ Exécuter : download_cv('french')",
+    "see_cv_en": "▶ Exécuter : see_cv('english')",
+    "see_cv_fr": "▶ Exécuter : see_cv('french')",
     "module_skills": "Stack technique et compétences statistiques",
     "module_projects": "Livrables backend et analytique de production",
     "module_experience": "Stages et trajectoire professionnelle",
@@ -187,6 +191,8 @@
     "access_projects": "ACCÉDER AUX PROJETS DÉPLOYÉS",
     "download_dossier_en": "TÉLÉCHARGER DOSSIER (CV EN)",
     "download_dossier_fr": "DOSSIER (CV FR)",
+    "see_dossier_en": "VOIR DOSSIER (CV EN)",
+    "see_dossier_fr": "DOSSIER (CV FR)",
     "sec_ssl": "SSL_SÉCURISÉ",
     "avatar_role": "ARCHITECTE SYSTÈME // BACKEND & IA",
     "cat_languages": "LANGAGES & RUNTIMES",
@@ -213,6 +219,8 @@
     "cv_heading": "Curriculum Vitae",
     "download_cv_en": "Télécharger le CV (Anglais) ↗",
     "download_cv_fr": "Télécharger le CV (Français) ↗",
+    "see_cv_en": "Voir le CV (Anglais) ↗",
+    "see_cv_fr": "Voir le CV (Français) ↗",
     "copyright": "Tous droits réservés.",
     "mode": "Mode :",
     "theme": "Thème :"

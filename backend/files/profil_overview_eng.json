@@ -256,7 +256,8 @@
       "pfe_candidate": "PFE 2027 Candidate",
       "backend_ai": "Backend & AI",
       "seeking_internship": "Looking for a PFE Internship!",
-      "avatar_role": "AI & Backend"
+      "avatar_role": "AI & Backend",
+      "back_to_top": "Back to top"
     },
     "nav": {
       "brand": "Oussama Zmitri",
@@ -300,6 +301,7 @@
     "hero": {
       "explore_work": "Explore Work",
       "download_cv": "Download CV",
+      "see_cv": "See CV",
       "contact_me": "Contact Me",
       "cv_english": "English CV",
       "cv_french": "French CV",
@@ -412,6 +414,8 @@
       "interactive_action": "Interactive action trigger",
       "run_en": "▶ Run: download_cv('english')",
       "run_fr": "▶ Run: download_cv('french')",
+      "see_cv_en": "▶ Run: see_cv('english')",
+      "see_cv_fr": "▶ Run: see_cv('french')",
       "module_skills": "Technical stack and statistical proficiencies",
       "module_projects": "Backend and analytics production deliverables",
       "module_experience": "Internships and professional trajectory",
@@ -438,6 +442,8 @@
       "access_projects": "ACCESS DEPLOYED PROJECTS",
       "download_dossier_en": "DOWNLOAD DOSSIER (CV EN)",
       "download_dossier_fr": "DOSSIER (CV FR)",
+      "see_dossier_en": "SEE DOSSIER (CV EN)",
+      "see_dossier_fr": "DOSSIER (CV FR)",
       "sec_ssl": "SECURE_SSL",
       "avatar_role": "SYSTEM ARCHITECT // BACKEND & AI",
       "cat_languages": "LANGUAGES & RUNTIMES",
@@ -464,6 +470,8 @@
       "cv_heading": "Curriculum Vitae",
       "download_cv_en": "Download CV (English) ↗",
       "download_cv_fr": "Download CV (French) ↗",
+      "see_cv_en": "See CV (English) ↗",
+      "see_cv_fr": "See CV (French) ↗",
       "copyright": "All rights reserved.",
       "mode": "Mode:",
       "theme": "Theme:"
